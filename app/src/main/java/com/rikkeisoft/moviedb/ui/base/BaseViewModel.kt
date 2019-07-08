@@ -1,4 +1,4 @@
-package com.rikkeisoft.moviedb.ui
+package com.rikkeisoft.moviedb.ui.base
 
 import androidx.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable

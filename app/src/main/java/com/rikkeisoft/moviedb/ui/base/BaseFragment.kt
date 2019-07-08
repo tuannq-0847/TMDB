@@ -1,4 +1,4 @@
-package com.rikkeisoft.moviedb.ui
+package com.rikkeisoft.moviedb.ui.base
 
 import android.os.Bundle
 import android.view.LayoutInflater
