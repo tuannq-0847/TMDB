@@ -6,9 +6,13 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
+def localPropertiesFile = rootProject.file("local.properties")
+def localProperties = new Properties()
+localProperties.load(new FileInputStream(localPropertiesFile))
+
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion  rootProject.ext.buildToolsVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
     defaultConfig {
         applicationId "com.rikkeisoft.moviedb"
         minSdkVersion rootProject.ext.minSdkVersion
@@ -16,6 +20,7 @@ android {
         versionCode rootProject.ext.versionCode
         versionName rootProject.ext.versionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "API_KEY", localProperties['apiKey']
     }
     buildTypes {
         debug {
@@ -66,8 +71,8 @@ dependencies {
     implementation "com.google.android.material:material:$rootProject.ext.materialVersion"
     //RecyclerView
     implementation "com.android.support:mediarouter-v7:$rootProject.ext.recyclerVersion"
-    //Multidex
-    implementation 'com.android.support:multidex:1.0.3'
+    //CircleImageView
+    implementation "de.hdodenhof:circleimageview:$rootProject.ext.circleImageVersion"
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"

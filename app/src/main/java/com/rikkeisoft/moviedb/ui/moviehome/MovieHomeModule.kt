@@ -1,4 +1,4 @@
-package com.rikkeisoft.moviedb.ui.main
+package com.rikkeisoft.moviedb.ui.moviehome
 
 import androidx.lifecycle.ViewModelProviders
 import com.rikkeisoft.moviedb.utils.MovieViewModelFactory
@@ -8,18 +8,18 @@ import javax.inject.Named
 import javax.inject.Scope
 
 @Module
-class MainActivityModule {
+class MovieHomeModule {
 
     @Provides
-    @MainActivityScope
-    @Named(MainViewModel.NAME)
+    @MovieHomeScope
+    @Named(MovieHomeViewModel.NAME)
     fun provideViewModel(
-        mainActivity: MainActivity,
+        movieHomeFragment: MovieHomeFragment,
         viewModelFactory: MovieViewModelFactory
-    ) = ViewModelProviders.of(mainActivity, viewModelFactory)
-        .get(MainViewModel::class.java)
+    ) = ViewModelProviders.of(movieHomeFragment, viewModelFactory)
+        .get(MovieHomeViewModel::class.java)
 }
 
 @Scope
 @Retention
-annotation class MainActivityScope
+annotation class MovieHomeScope
