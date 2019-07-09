@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MyMovieDB</string>
+    <string name="genres">Genres</string>
+    <string name="movies">Movies</string>
 </resources>
