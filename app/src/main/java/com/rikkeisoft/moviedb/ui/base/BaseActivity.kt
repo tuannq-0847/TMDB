@@ -2,13 +2,13 @@ package com.rikkeisoft.moviedb.ui.base
 
 import android.os.Bundle
 import androidx.annotation.LayoutRes
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.rikkeisoft.moviedb.BR
 import dagger.android.AndroidInjection
+import dagger.android.support.DaggerAppCompatActivity
 
-abstract class BaseActivity<VB : ViewDataBinding, VM : BaseViewModel> : AppCompatActivity() {
+abstract class BaseActivity<VB : ViewDataBinding, VM : BaseViewModel> : DaggerAppCompatActivity() {
     @get:LayoutRes
     abstract val layoutId: Int
 

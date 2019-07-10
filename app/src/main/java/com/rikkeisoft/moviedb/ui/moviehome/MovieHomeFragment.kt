@@ -13,12 +13,15 @@ class MovieHomeFragment : BaseFragment<FragmentMovieHomeBinding, MovieHomeViewMo
     lateinit var homeViewModel: MovieHomeViewModel
 
     override fun initComponents() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun initViewModel() {
         if (::homeViewModel.isInitialized) {
             viewModel = homeViewModel
         }
+    }
+
+    companion object {
+        fun newInstance() = MovieHomeFragment()
     }
 }
