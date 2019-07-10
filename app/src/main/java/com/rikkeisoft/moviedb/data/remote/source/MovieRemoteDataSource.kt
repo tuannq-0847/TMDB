@@ -5,8 +5,12 @@ import com.rikkeisoft.moviedb.data.remote.ApiService
 import com.rikkeisoft.moviedb.data.remote.response.GenreResponse
 import com.rikkeisoft.moviedb.data.remote.response.GetMovieListResponse
 import io.reactivex.Single
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class MovieRemoteDataSource(private val apiService: ApiService) : MovieDataSource.Remote {
+@Singleton
+class MovieRemoteDataSource @Inject constructor(private val apiService: ApiService) : MovieDataSource.Remote {
+
     override fun getPopularFilms(): Single<GetMovieListResponse> = apiService.getPopularFilms()
 
     override fun getTopRatedFilms(): Single<GetMovieListResponse> = apiService.getTopRatedFilms()

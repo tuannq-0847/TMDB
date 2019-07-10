@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import com.rikkeisoft.moviedb.BR
+import com.rikkeisoft.moviedb.utils.showMessage
 import dagger.android.support.AndroidSupportInjection
 
 abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment() {
@@ -42,4 +43,13 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment
     protected abstract fun initViewModel()
 
     protected abstract fun initComponents()
+
+    open fun showLoading(isLoading: Boolean) {
+        viewModel.loading.value = isLoading
+    }
+
+    open fun showError(error: Throwable?) {
+        viewModel.error.value = error
+        context?.showMessage(error?.message.toString())
+    }
 }
