@@ -1,12 +1,14 @@
 package com.rikkeisoft.moviedb.ui.main
 
 import android.view.MenuItem
+import com.crashlytics.android.Crashlytics
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.rikkeisoft.moviedb.R
 import com.rikkeisoft.moviedb.databinding.ActivityMainBinding
 import com.rikkeisoft.moviedb.ui.base.BaseActivity
 import com.rikkeisoft.moviedb.ui.moviehome.MovieHomeFragment
 import com.rikkeisoft.moviedb.utils.add
+import io.fabric.sdk.android.Fabric
 import kotlinx.android.synthetic.main.activity_main.bottomNavigation
 import javax.inject.Inject
 import javax.inject.Named
@@ -41,6 +43,11 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
 
     private fun openMovieFragment() {
         supportFragmentManager.add(R.id.layoutParent, MovieHomeFragment.newInstance())
+    }
+
+    override fun setUpFabric() {
+        super.setUpFabric()
+        Fabric.with(this, Crashlytics())
     }
 
     override fun initViewModel() {

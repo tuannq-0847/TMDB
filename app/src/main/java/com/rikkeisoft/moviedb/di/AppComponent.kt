@@ -2,6 +2,7 @@ package com.rikkeisoft.moviedb.di
 
 import android.app.Application
 import com.rikkeisoft.moviedb.MainApplication
+import com.rikkeisoft.moviedb.data.repository.MovieRepository
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
@@ -15,9 +16,12 @@ import javax.inject.Singleton
         AndroidInjectionModule::class,
         ActivityModule::class,
         ViewModelModule::class,
-        NetworkModule::class]
+        NetworkModule::class,
+        DataSourceModule::class]
 )
 interface AppComponent : AndroidInjector<MainApplication> {
+
+    fun getMovieRepository(): MovieRepository
 
     @Component.Builder
     interface Builder {

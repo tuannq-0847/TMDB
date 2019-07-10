@@ -5,5 +5,5 @@ import com.rikkeisoft.moviedb.data.model.Genre
 
 class GenreResponse {
     @SerializedName("genres")
-    val genres: MutableList<Genre> = mutableListOf()
+    val genres: List<Genre> = mutableListOf()
 }
