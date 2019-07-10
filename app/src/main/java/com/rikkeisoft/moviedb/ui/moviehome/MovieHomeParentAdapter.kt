@@ -10,10 +10,11 @@ import com.rikkeisoft.moviedb.ui.base.BaseRecyclerAdapter.Companion.BaseViewHold
 import com.rikkeisoft.moviedb.ui.moviehome.MovieHomeParentAdapter.MovieHomeViewHolder
 import kotlinx.android.synthetic.main.item_movie_home.view.recyclerMovieChild
 
-class MovieHomeParentAdapter(data: List<MovieParent>) :
+class MovieHomeParentAdapter(private val data: MutableList<MovieParent>) :
     BaseRecyclerAdapter<ItemMovieHomeBinding, MovieParent, MovieHomeViewHolder>(data) {
 
     private val viewPool by lazy { RecyclerView.RecycledViewPool() }
+    private val adapter by lazy { MovieHomeChildAdapter(mutableListOf()) }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieHomeViewHolder =
         MovieHomeViewHolder(
@@ -22,17 +23,20 @@ class MovieHomeParentAdapter(data: List<MovieParent>) :
 
     override fun getLayoutRes(viewType: Int): Int = R.layout.item_movie_home
 
-    override fun onBindViewHolder(holder: MovieHomeViewHolder, position: Int) {
-        super.onBindViewHolder(holder, position)
-        holder.itemView.recyclerMovieChild.setRecycledViewPool(viewPool)
+    fun setData(newData: MutableList<MovieParent>) {
+        data.clear()
+        data.addAll(newData)
+        notifyDataSetChanged()
     }
 
     inner class MovieHomeViewHolder(private val binding: ItemMovieHomeBinding) :
         BaseViewHolder<ItemMovieHomeBinding, MovieParent>(binding) {
 
         override fun bindView(position: Int, data: MovieParent) {
-            binding.run {
-
+            itemView.run {
+                recyclerMovieChild.setRecycledViewPool(viewPool)
+                recyclerMovieChild.adapter = adapter
+                adapter.setData(data.movieResults)
             }
         }
     }

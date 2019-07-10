@@ -10,5 +10,5 @@ open class BaseMovieResponse<T>(
     @SerializedName("total_pages")
     var totalPages: Int = 1,
     @SerializedName("results")
-    var results: List<T> = mutableListOf()
+    var results: MutableList<T> = mutableListOf()
 )
