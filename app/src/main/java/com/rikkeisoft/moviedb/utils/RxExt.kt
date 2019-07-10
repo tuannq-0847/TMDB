@@ -1,22 +1,28 @@
 package com.rikkeisoft.moviedb.utils
 
 import androidx.lifecycle.MutableLiveData
-import com.rikkeisoft.moviedb.data.remote.response.APIResponse
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
-fun <T> Single<T>.handleData(mutableLiveData: MutableLiveData<APIResponse<T>>): Disposable =
+fun <T> Single<T>.handleData(
+    data: MutableLiveData<T>,
+    error: MutableLiveData<Throwable>,
+    loading: MutableLiveData<Boolean>
+): Disposable =
     observeOn(AndroidSchedulers.mainThread())
         .subscribeOn(Schedulers.io())
-        .doOnSuccess {
-            mutableLiveData.value = APIResponse.loading()
+        .doOnSubscribe {
+            loading.value = true
+        }
+        .doAfterTerminate {
+            loading.value = false
         }
         .subscribe(
             {
-                mutableLiveData.value = APIResponse.success(it)
+                data.value = it
             }, {
-                mutableLiveData.value = APIResponse.error(it)
+                error.value = it
             }
         )
