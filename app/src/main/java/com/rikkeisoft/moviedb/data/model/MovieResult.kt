@@ -1,7 +1,10 @@
 package com.rikkeisoft.moviedb.data.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class MovieResult(
     @SerializedName("vote_count")
     var voteCount: Int = 1,
@@ -25,4 +28,4 @@ data class MovieResult(
     var overView: String = "default",
     @SerializedName("release_date")
     var releaseDate: String? = null
-)
+) : Parcelable

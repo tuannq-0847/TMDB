@@ -4,14 +4,17 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.rikkeisoft.moviedb.R
 import com.rikkeisoft.moviedb.data.model.MovieParent
+import com.rikkeisoft.moviedb.data.model.MovieResult
 import com.rikkeisoft.moviedb.databinding.ItemMovieHomeBinding
 import com.rikkeisoft.moviedb.ui.base.BaseRecyclerAdapter
-import com.rikkeisoft.moviedb.ui.base.BaseRecyclerAdapter.Companion.BaseViewHolder
 import com.rikkeisoft.moviedb.ui.moviehome.MovieHomeParentAdapter.MovieHomeViewHolder
 import kotlinx.android.synthetic.main.item_movie_home.view.recyclerMovieChild
 import kotlinx.android.synthetic.main.item_movie_home.view.textNameChild
 
-class MovieHomeParentAdapter(private val data: MutableList<MovieParent>) :
+class MovieHomeParentAdapter(
+    private val data: MutableList<MovieParent>,
+    private val listener: (movieResult: MovieResult) -> Unit
+) :
     BaseRecyclerAdapter<ItemMovieHomeBinding, MovieParent, MovieHomeViewHolder>(data) {
 
     private val viewPool by lazy { RecyclerView.RecycledViewPool() }
@@ -35,7 +38,7 @@ class MovieHomeParentAdapter(private val data: MutableList<MovieParent>) :
         override fun bindView(position: Int, data: MovieParent) {
             itemView.run {
                 recyclerMovieChild.setRecycledViewPool(viewPool)
-                recyclerMovieChild.adapter = MovieHomeChildAdapter(data.movieResults)
+                recyclerMovieChild.adapter = MovieHomeChildAdapter(data.movieResults,listener)
                 textNameChild.text = data.kindOfMovie
             }
         }

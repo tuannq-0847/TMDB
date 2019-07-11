@@ -47,7 +47,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
     }
 
     private fun openMovieFragment() {
-        supportFragmentManager.add(R.id.layoutParent, MovieHomeFragment.newInstance())
+        supportFragmentManager.add(R.id.layoutParent, MovieHomeFragment())
     }
 
     override fun setUpFabric() {
