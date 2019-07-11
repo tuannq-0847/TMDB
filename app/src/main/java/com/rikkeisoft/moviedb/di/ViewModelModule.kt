@@ -2,6 +2,7 @@ package com.rikkeisoft.moviedb.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.rikkeisoft.moviedb.ui.detail.DetailViewModel
 import com.rikkeisoft.moviedb.ui.main.MainViewModel
 import com.rikkeisoft.moviedb.ui.moviehome.MovieHomeViewModel
 import com.rikkeisoft.moviedb.utils.MovieViewModelFactory
@@ -23,6 +24,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(MovieHomeViewModel::class)
     abstract fun bindMovieHomeViewModel(movieHomeViewModel: MovieHomeViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(DetailViewModel::class)
+    abstract fun bindDetailViewModel(detailViewModel: DetailViewModel): ViewModel
 
     @Binds
     @Singleton
