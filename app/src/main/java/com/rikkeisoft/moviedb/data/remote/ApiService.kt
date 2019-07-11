@@ -4,6 +4,7 @@ import com.rikkeisoft.moviedb.data.remote.response.GenreResponse
 import com.rikkeisoft.moviedb.data.remote.response.GetMovieListResponse
 import io.reactivex.Single
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 interface ApiService {
     @GET("3/movie/popular")
@@ -17,4 +18,7 @@ interface ApiService {
 
     @GET("3/genre/movie/list")
     fun getGenreMovies(): Single<GenreResponse>
+
+    @GET("3/movie/{id}/")
+    fun getMovieDetailById(@Path("id") id: Int)
 }
