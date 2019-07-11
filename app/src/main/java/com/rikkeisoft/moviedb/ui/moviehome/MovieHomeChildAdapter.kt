@@ -6,10 +6,12 @@ import com.rikkeisoft.moviedb.R
 import com.rikkeisoft.moviedb.data.model.MovieResult
 import com.rikkeisoft.moviedb.databinding.ItemMovieHomeChildBinding
 import com.rikkeisoft.moviedb.ui.base.BaseRecyclerAdapter
-import com.rikkeisoft.moviedb.ui.base.BaseRecyclerAdapter.Companion.BaseViewHolder
 import com.rikkeisoft.moviedb.ui.moviehome.MovieHomeChildAdapter.ChildMovieViewHolder
 
-class MovieHomeChildAdapter(private val data: MutableList<MovieResult>) :
+class MovieHomeChildAdapter(
+    private val data: MutableList<MovieResult>,
+    private val listener: (movieResult: MovieResult) -> Unit
+) :
     BaseRecyclerAdapter<ItemMovieHomeChildBinding, MovieResult, ChildMovieViewHolder>(data) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChildMovieViewHolder =
@@ -23,10 +25,11 @@ class MovieHomeChildAdapter(private val data: MutableList<MovieResult>) :
         updateData(newData, DiffUtil.calculateDiff(DiffUtilMovieHomeCallBack(data, newData)))
     }
 
-    class ChildMovieViewHolder(private val binding: ItemMovieHomeChildBinding) :
+    inner class ChildMovieViewHolder(private val binding: ItemMovieHomeChildBinding) :
         BaseViewHolder<ItemMovieHomeChildBinding, MovieResult>(binding) {
 
         override fun bindView(position: Int, data: MovieResult) {
+            itemView.setOnClickListener { listener(data) }
             binding.run {
                 movieResult = data
             }

@@ -1,5 +1,6 @@
 package com.rikkeisoft.moviedb.data.remote
 
+import com.rikkeisoft.moviedb.data.model.CastDetailMovie
 import com.rikkeisoft.moviedb.data.remote.response.GenreResponse
 import com.rikkeisoft.moviedb.data.remote.response.GetMovieListResponse
 import io.reactivex.Single
@@ -19,6 +20,9 @@ interface ApiService {
     @GET("3/genre/movie/list")
     fun getGenreMovies(): Single<GenreResponse>
 
-    @GET("3/movie/{id}/")
-    fun getMovieDetailById(@Path("id") id: Int)
+    @GET("3/movie/{id}/credits")
+    fun getCreditsByIdMovie(@Path("id") id: Int): Single<CastDetailMovie>
+
+    @GET("3/movie/{id}/similar")
+    fun getSimilarsByIdMovie(@Path("id") id: Int): Single<GetMovieListResponse>
 }

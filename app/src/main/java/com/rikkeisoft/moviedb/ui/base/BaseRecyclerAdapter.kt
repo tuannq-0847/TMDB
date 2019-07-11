@@ -6,8 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.rikkeisoft.moviedb.ui.base.BaseRecyclerAdapter.Companion.BaseViewHolder
-import com.rikkeisoft.moviedb.ui.moviehome.DiffUtilMovieHomeCallBack
+import com.rikkeisoft.moviedb.ui.base.BaseRecyclerAdapter.BaseViewHolder
 
 abstract class BaseRecyclerAdapter<ViewBinding : ViewDataBinding, T, VH : BaseViewHolder<ViewBinding, T>>(private val data: MutableList<T>) :
     RecyclerView.Adapter<VH>() {
@@ -35,11 +34,9 @@ abstract class BaseRecyclerAdapter<ViewBinding : ViewDataBinding, T, VH : BaseVi
         diffResult.dispatchUpdatesTo(this)
     }
 
-    companion object {
-        abstract class BaseViewHolder<ViewBinding : ViewDataBinding, T>(binding: ViewBinding) :
-            RecyclerView.ViewHolder(binding.root) {
+    abstract class BaseViewHolder<ViewBinding : ViewDataBinding, T>(binding: ViewBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
-            abstract fun bindView(position: Int, data: T)
-        }
+        abstract fun bindView(position: Int, data: T)
     }
 }

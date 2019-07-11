@@ -1,11 +1,12 @@
 package com.rikkeisoft.moviedb.ui.moviehome
 
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.rikkeisoft.moviedb.R
-import com.rikkeisoft.moviedb.data.model.MovieParent
+import com.rikkeisoft.moviedb.data.model.MovieResult
 import com.rikkeisoft.moviedb.databinding.FragmentMovieHomeBinding
 import com.rikkeisoft.moviedb.ui.base.BaseFragment
+import com.rikkeisoft.moviedb.ui.detail.DetailFragment
+import com.rikkeisoft.moviedb.utils.add
 import kotlinx.android.synthetic.main.fragment_movie_home.recyclerGenres
 import kotlinx.android.synthetic.main.fragment_movie_home.recyclerMovieHome
 import javax.inject.Inject
@@ -13,9 +14,14 @@ import javax.inject.Named
 
 class MovieHomeFragment : BaseFragment<FragmentMovieHomeBinding, MovieHomeViewModel>() {
     override val layoutId: Int = R.layout.fragment_movie_home
-    private val adapter by lazy { MovieHomeParentAdapter(mutableListOf()) }
+    private val adapter by lazy {
+        MovieHomeParentAdapter(mutableListOf()) { movieResult ->
+            onItemMovieClick(
+                movieResult
+            )
+        }
+    }
     private val genreAdapter by lazy { MovieGenreAdapter(mutableListOf()) }
-    private val data: ArrayList<MovieParent> = ArrayList()
 
     @Inject
     @field:Named(MovieHomeViewModel.NAME)
@@ -39,15 +45,15 @@ class MovieHomeFragment : BaseFragment<FragmentMovieHomeBinding, MovieHomeViewMo
 
     override fun doObserve() {
         super.doObserve()
-        homeViewModel.movieData.observe(this, Observer {
+        viewModel.movieData.observe(this, Observer {
             adapter.setData(it)
         })
-        homeViewModel.genres.observe(this, Observer {
+        viewModel.genres.observe(this, Observer {
             genreAdapter.setData(it.genres)
         })
     }
 
-    companion object {
-        fun newInstance() = MovieHomeFragment()
+    private fun onItemMovieClick(movieResult: MovieResult) {
+        activity?.supportFragmentManager?.add(R.id.layoutParent, DetailFragment.newInstance(movieResult))
     }
 }

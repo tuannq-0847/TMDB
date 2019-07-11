@@ -6,7 +6,6 @@ import com.rikkeisoft.moviedb.R
 import com.rikkeisoft.moviedb.data.model.Genre
 import com.rikkeisoft.moviedb.databinding.ItemGenreBinding
 import com.rikkeisoft.moviedb.ui.base.BaseRecyclerAdapter
-import com.rikkeisoft.moviedb.ui.base.BaseRecyclerAdapter.Companion.BaseViewHolder
 import com.rikkeisoft.moviedb.ui.moviehome.MovieGenreAdapter.GenreViewHolder
 import kotlinx.android.synthetic.main.item_genre.view.textGenre
 
