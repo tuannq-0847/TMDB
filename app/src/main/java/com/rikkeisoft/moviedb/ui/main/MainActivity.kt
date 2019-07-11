@@ -1,5 +1,6 @@
 package com.rikkeisoft.moviedb.ui.main
 
+import android.os.Bundle
 import android.view.MenuItem
 import com.crashlytics.android.Crashlytics
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -23,6 +24,10 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
 
     override fun initComponents() {
         bottomNavigation.setOnNavigationItemSelectedListener(this)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         openMovieFragment()
     }
 

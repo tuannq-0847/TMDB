@@ -5,7 +5,7 @@ buildscript {
     repositories {
         google()
         jcenter()
-        maven { url 'https://maven.fabric.io/public'}
+        maven { url 'https://maven.fabric.io/public' }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.4.1'
@@ -20,7 +20,7 @@ allprojects {
     repositories {
         google()
         jcenter()
-        
+        mavenCentral()
     }
 }
 
@@ -28,13 +28,13 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
-ext{
+ext {
     compileSdkVersion = 29
     minSdkVersion = 21
     targetSdkVersion = 29
     versionCode = 1
     versionName = '1.0'
-    buildToolsVersion='29.0.0'
+    buildToolsVersion = '29.0.0'
 
     appcompatVersion = '1.1.0-rc01'
     coreKtxVersion = '1.0.2'
@@ -45,10 +45,10 @@ ext{
     runnerVersion = '1.2.0'
     espressoCoreVersion = '3.2.0'
 
-    materialVersion='1.1.0-alpha07'
+    materialVersion = '1.1.0-alpha07'
 
-    rxJavaVersion='2.2.8'
-    rxAndroidVersion='2.1.1'
+    rxJavaVersion = '2.2.8'
+    rxAndroidVersion = '2.1.1'
 
     roomVersion = "2.1.0"
 
@@ -56,19 +56,21 @@ ext{
 
     glideVersion = "4.9.0"
 
-    recyclerVersion="28.0.0"
+    recyclerVersion = "28.0.0"
 
-    retrofitVersion='2.5.0'
+    retrofitVersion = '2.5.0'
 
-    daggerVersion='2.23.2'
+    daggerVersion = '2.23.2'
 
-    gsonVersion='2.8.5'
+    gsonVersion = '2.8.5'
 
-    databindingVersion='3.1.4'
+    databindingVersion = '3.1.4'
 
-    circleImageVersion='3.0.0'
+    circleImageVersion = '3.0.0'
 
-    stethoVersion='1.5.1'
+    stethoVersion = '1.5.1'
+
+    roundedImageVersion = '2.3.0'
 
     junitVersion = '4.12'
     runnerVersion = '1.2.0'

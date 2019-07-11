@@ -6,11 +6,9 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
-fun <T> Single<T>.handleData(
-    data: MutableLiveData<T>,
-    error: MutableLiveData<Throwable>,
+fun <T> Single<T>.handleLoading(
     loading: MutableLiveData<Boolean>
-): Disposable =
+): Single<T> =
     observeOn(AndroidSchedulers.mainThread())
         .subscribeOn(Schedulers.io())
         .doOnSubscribe {
@@ -19,10 +17,4 @@ fun <T> Single<T>.handleData(
         .doAfterTerminate {
             loading.value = false
         }
-        .subscribe(
-            {
-                data.value = it
-            }, {
-                error.value = it
-            }
-        )
+

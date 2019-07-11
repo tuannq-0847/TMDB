@@ -1,11 +1,12 @@
 package com.rikkeisoft.moviedb.ui.moviehome
 
-import android.util.Log
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.rikkeisoft.moviedb.R
 import com.rikkeisoft.moviedb.data.model.MovieParent
 import com.rikkeisoft.moviedb.databinding.FragmentMovieHomeBinding
 import com.rikkeisoft.moviedb.ui.base.BaseFragment
+import kotlinx.android.synthetic.main.fragment_movie_home.recyclerGenres
 import kotlinx.android.synthetic.main.fragment_movie_home.recyclerMovieHome
 import javax.inject.Inject
 import javax.inject.Named
@@ -13,6 +14,7 @@ import javax.inject.Named
 class MovieHomeFragment : BaseFragment<FragmentMovieHomeBinding, MovieHomeViewModel>() {
     override val layoutId: Int = R.layout.fragment_movie_home
     private val adapter by lazy { MovieHomeParentAdapter(mutableListOf()) }
+    private val genreAdapter by lazy { MovieGenreAdapter(mutableListOf()) }
     private val data: ArrayList<MovieParent> = ArrayList()
 
     @Inject
@@ -21,7 +23,6 @@ class MovieHomeFragment : BaseFragment<FragmentMovieHomeBinding, MovieHomeViewMo
 
     override fun initComponents() {
         homeViewModel.getData()
-        doObserve()
         bindView()
     }
 
@@ -33,20 +34,16 @@ class MovieHomeFragment : BaseFragment<FragmentMovieHomeBinding, MovieHomeViewMo
 
     private fun bindView() {
         recyclerMovieHome.adapter = adapter
+        recyclerGenres.adapter = genreAdapter
     }
 
-    private fun doObserve() {
-        homeViewModel.playingMovies.observe(this, Observer {
-            data.add(MovieParent("test", it.results))
-            adapter.setData(data)
+    override fun doObserve() {
+        super.doObserve()
+        homeViewModel.movieData.observe(this, Observer {
+            adapter.setData(it)
         })
-        homeViewModel.playingMovies.observe(this, Observer {
-            data.add(MovieParent("test1", it.results))
-            adapter.setData(data)
-        })
-        homeViewModel.playingMovies.observe(this, Observer {
-            data.add(MovieParent("test2", it.results))
-            adapter.setData(data)
+        homeViewModel.genres.observe(this, Observer {
+            genreAdapter.setData(it.genres)
         })
     }
 
