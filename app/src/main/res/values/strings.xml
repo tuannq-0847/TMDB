@@ -2,4 +2,7 @@
     <string name="app_name">MyMovieDB</string>
     <string name="genres">Genres</string>
     <string name="movies">Movies</string>
+    <string name="theater">In theater now</string>
+    <string name="popular">Popular now</string>
+    <string name="top_rate">Top rated</string>
 </resources>

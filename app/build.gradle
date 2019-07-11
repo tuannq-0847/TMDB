@@ -39,6 +39,10 @@ android {
         }
     }
 
+    androidExtensions {
+        experimental = true
+    }
+
     dataBinding {
         enabled = true
     }
@@ -84,6 +88,9 @@ dependencies {
     //Stetho
     implementation "com.facebook.stetho:stetho:$rootProject.ext.stethoVersion"
     implementation "com.facebook.stetho:stetho-okhttp3:$rootProject.ext.stethoVersion"
+
+    //RoundedImageView
+    implementation "com.makeramen:roundedimageview:$rootProject.ext.roundedImageVersion"
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"

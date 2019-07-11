@@ -5,12 +5,10 @@ import androidx.fragment.app.FragmentManager
 
 fun FragmentManager.add(id: Int, fragment: Fragment) {
     beginTransaction().add(id, fragment)
-        .addToBackStack(null)
         .commit()
 }
 
 fun FragmentManager.replace(id: Int, fragment: Fragment) {
     beginTransaction().add(id, fragment)
-        .addToBackStack(null)
         .commit()
 }

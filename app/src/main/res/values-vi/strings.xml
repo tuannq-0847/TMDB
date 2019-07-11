@@ -3,4 +3,7 @@
     <string name="app_name">MyMovieDB</string>
     <string name="genres">Thể loại</string>
     <string name="movies">Phim</string>
+    <string name="theater">Đang chiếu rạp</string>
+    <string name="popular">Đang thịnh hành</string>
+    <string name="top_rate">Điểm cao</string>
 </resources>

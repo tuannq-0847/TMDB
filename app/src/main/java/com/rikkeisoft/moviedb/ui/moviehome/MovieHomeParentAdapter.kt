@@ -9,12 +9,12 @@ import com.rikkeisoft.moviedb.ui.base.BaseRecyclerAdapter
 import com.rikkeisoft.moviedb.ui.base.BaseRecyclerAdapter.Companion.BaseViewHolder
 import com.rikkeisoft.moviedb.ui.moviehome.MovieHomeParentAdapter.MovieHomeViewHolder
 import kotlinx.android.synthetic.main.item_movie_home.view.recyclerMovieChild
+import kotlinx.android.synthetic.main.item_movie_home.view.textNameChild
 
 class MovieHomeParentAdapter(private val data: MutableList<MovieParent>) :
     BaseRecyclerAdapter<ItemMovieHomeBinding, MovieParent, MovieHomeViewHolder>(data) {
 
     private val viewPool by lazy { RecyclerView.RecycledViewPool() }
-    private val adapter by lazy { MovieHomeChildAdapter(mutableListOf()) }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieHomeViewHolder =
         MovieHomeViewHolder(
@@ -35,8 +35,8 @@ class MovieHomeParentAdapter(private val data: MutableList<MovieParent>) :
         override fun bindView(position: Int, data: MovieParent) {
             itemView.run {
                 recyclerMovieChild.setRecycledViewPool(viewPool)
-                recyclerMovieChild.adapter = adapter
-                adapter.setData(data.movieResults)
+                recyclerMovieChild.adapter = MovieHomeChildAdapter(data.movieResults)
+                textNameChild.text = data.kindOfMovie
             }
         }
     }
