@@ -8,6 +8,10 @@
         <variable
             name="movieResult"
             type="com.rikkeisoft.moviedb.data.model.MovieResult" />
+
+        <variable
+            name="constants"
+            type="com.rikkeisoft.moviedb.utils.Constants" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,10 +23,11 @@
             android:id="@+id/imagePoster"
             android:layout_width="@dimen/dp_150"
             android:layout_height="@dimen/dp_225"
-            app:riv_corner_radius="@dimen/dp_8"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            bind:showImagePoster="@{movieResult.posterPath}" />
+            app:riv_corner_radius="@dimen/dp_8"
+            bind:showImagePoster="@{movieResult.posterPath}"
+            bind:sizeImage="@{constants.SIZE_W185}" />
 
         <TextView
             android:id="@+id/textNameMovie"

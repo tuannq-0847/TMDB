@@ -12,10 +12,10 @@ fun ProgressBar.handleProgress(isLoading: Boolean) {
     visibility = if (isLoading) View.VISIBLE else View.GONE
 }
 
-@BindingAdapter("showImagePoster")
-fun ImageView.showPoster(url: String) {
+@BindingAdapter("showImagePoster", "sizeImage")
+fun ImageView.showPoster(url: String?, sizeImage: String?) {
     Glide.with(context)
-        .load("${Constants.IMAGE_LINK}$url")
+        .load("${Constants.IMAGE_LINK}$sizeImage$url")
         .placeholder(R.drawable.background_image)
         .into(this)
 }

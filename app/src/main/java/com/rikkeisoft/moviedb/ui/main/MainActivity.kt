@@ -8,7 +8,6 @@ import com.rikkeisoft.moviedb.R
 import com.rikkeisoft.moviedb.databinding.ActivityMainBinding
 import com.rikkeisoft.moviedb.ui.base.BaseActivity
 import com.rikkeisoft.moviedb.ui.moviehome.MovieHomeFragment
-import com.rikkeisoft.moviedb.utils.add
 import io.fabric.sdk.android.Fabric
 import kotlinx.android.synthetic.main.activity_main.bottomNavigation
 import javax.inject.Inject
@@ -47,7 +46,9 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
     }
 
     private fun openMovieFragment() {
-        supportFragmentManager.add(R.id.layoutParent, MovieHomeFragment())
+        supportFragmentManager.beginTransaction()
+            .add(R.id.layoutChild, MovieHomeFragment())
+            .commit()
     }
 
     override fun setUpFabric() {

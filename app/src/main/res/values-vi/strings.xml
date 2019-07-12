@@ -6,4 +6,7 @@
     <string name="theater">Đang chiếu rạp</string>
     <string name="popular">Đang thịnh hành</string>
     <string name="top_rate">Điểm cao</string>
+    <string name="overview">Tổng quan</string>
+    <string name="cast">Diễn viên</string>
+    <string name="related">Phim liên quan</string>
 </resources>

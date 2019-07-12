@@ -10,103 +10,170 @@
             type="com.rikkeisoft.moviedb.ui.detail.DetailViewModel" />
     </data>
 
-    <androidx.core.widget.NestedScrollView
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="@dimen/dp_352">
 
-            <ImageView
-                android:id="@+id/imagePosterParent"
+            <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:alpha="0.3"
-                app:layout_constraintHeight_percent="0.6"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_height="match_parent"
+                app:contentScrim="?attr/colorPrimary"
+                app:expandedTitleGravity="top"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
-            <TextView
-                android:id="@+id/titleMovie"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dp_16"
-                android:text="@{viewModel.titleMovie}"
-                android:textColor="@android:color/black"
-                android:textSize="@dimen/sp_22"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/frameImagePoster" />
+                <ImageView
+                    android:id="@+id/imagePosterParent"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_352"
+                    android:alpha="0.5"
+                    android:scaleType="fitXY"
+                    app:layout_collapseMode="parallax"
+                    app:layout_collapseParallaxMultiplier="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    bind:showImagePoster="@{viewModel.posterImage}"
+                    bind:sizeImage="@{viewModel.imageSizeBlur}" />
 
-            <TextView
-                android:id="@+id/textDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dp_16"
-                android:layout_marginTop="@dimen/dp_8"
-                android:text="@{viewModel.releaseDate}"
-                android:textSize="@dimen/sp_16"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/titleMovie" />
 
-            <TextView
-                android:id="@+id/textOverview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dp_16"
-                android:layout_marginTop="@dimen/dp_16"
-                android:textColor="@android:color/black"
-                android:textSize="@dimen/sp_16"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textDate" />
+                <FrameLayout
+                    android:id="@+id/frameImagePoster"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_352"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/textContentOverview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dp_16"
-                android:layout_marginTop="@dimen/dp_8"
-                android:text="@{viewModel.overview}"
-                android:textSize="@dimen/sp_16"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textOverview" />
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:layout_width="@dimen/dp_215"
+                        android:layout_height="@dimen/dp_295"
+                        android:layout_gravity="center"
+                        app:layout_collapseMode="parallax"
+                        app:layout_collapseParallaxMultiplier="0.5"
+                        app:riv_corner_radius="@dimen/dp_8"
+                        bind:showImagePoster="@{viewModel.posterImage}"
+                        bind:sizeImage="@{viewModel.imageSize}" />
+                </FrameLayout>
 
-            <TextView
-                android:id="@+id/textCast"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dp_16"
-                android:layout_marginTop="@dimen/dp_16"
-                android:textColor="@android:color/black"
-                android:textSize="@dimen/sp_16"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textContentOverview" />
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbarDetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_collapseMode="pin" />
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            android:fillViewport="true"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dp_16"
-                android:layout_marginTop="@dimen/dp_8"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textCast" />
+                android:layout_height="match_parent">
 
-            <FrameLayout
-                android:id="@+id/frameImagePoster"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                <TextView
+                    android:id="@+id/titleMovie"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_16"
+                    android:layout_marginTop="@dimen/dp_16"
+                    android:text="@{viewModel.titleMovie}"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/sp_22"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                <com.makeramen.roundedimageview.RoundedImageView
-                    android:layout_width="@dimen/dp_215"
-                    android:layout_height="@dimen/dp_295"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="@dimen/dp_32"
-                    app:riv_corner_radius="@dimen/dp_8" />
-            </FrameLayout>
+                <TextView
+                    android:id="@+id/textDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_16"
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:text="@{viewModel.releaseDate}"
+                    android:textSize="@dimen/sp_16"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/titleMovie" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.core.widget.NestedScrollView>
+                <TextView
+                    android:id="@+id/textOverview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_16"
+                    android:layout_marginTop="@dimen/dp_16"
+                    android:text="@string/overview"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/sp_16"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textDate" />
+
+                <TextView
+                    android:id="@+id/textContentOverview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_16"
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:paddingEnd="@dimen/dp_16"
+                    android:text="@{viewModel.overview}"
+                    android:textSize="@dimen/sp_16"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textOverview" />
+
+                <TextView
+                    android:id="@+id/textCast"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_16"
+                    android:layout_marginTop="@dimen/dp_16"
+                    android:text="@string/cast"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/sp_16"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textContentOverview" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerCasting"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_16"
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textCast" />
+
+                <TextView
+                    android:id="@+id/textSimilarMovies"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/dp_16"
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:text="@string/related"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/sp_16"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/recyclerCasting" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerSimilarMovie"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_16"
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textSimilarMovies" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
