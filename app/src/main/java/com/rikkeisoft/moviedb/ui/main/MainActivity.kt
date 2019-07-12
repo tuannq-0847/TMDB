@@ -47,7 +47,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
 
     private fun openMovieFragment() {
         supportFragmentManager.beginTransaction()
-            .add(R.id.layoutChild, MovieHomeFragment())
+            .replace(R.id.layoutChild, MovieHomeFragment())
             .commit()
     }
 
