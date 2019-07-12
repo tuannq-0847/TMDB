@@ -1,6 +1,7 @@
 package com.rikkeisoft.moviedb.data
 
 import com.rikkeisoft.moviedb.data.model.CastDetailMovie
+import com.rikkeisoft.moviedb.data.model.MovieResult
 import com.rikkeisoft.moviedb.data.remote.response.GetMovieListResponse
 import io.reactivex.Single
 
@@ -10,5 +11,9 @@ interface DetailMovieDataSource {
         fun getSimilarsMovieById(id: Int): Single<GetMovieListResponse>
     }
 
-    interface Local
+    interface Local {
+        fun queryMovieInFavorite(movieResult: MovieResult): Single<Int>
+        fun insertFavoriteMovie(movieResult: MovieResult)
+        fun deleteFavoriteMovie(movieId: Int)
+    }
 }

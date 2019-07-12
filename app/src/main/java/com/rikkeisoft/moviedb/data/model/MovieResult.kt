@@ -1,14 +1,19 @@
 package com.rikkeisoft.moviedb.data.model
 
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
+import com.rikkeisoft.moviedb.utils.Constants.TABLE_FAVORITE
 import kotlinx.android.parcel.Parcelize
 
+@Entity(tableName = TABLE_FAVORITE)
 @Parcelize
 data class MovieResult(
     @SerializedName("vote_count")
     var voteCount: Int = 1,
     @SerializedName("id")
+    @PrimaryKey
     var idMovie: Int = 1,
     @SerializedName("video")
     var video: Boolean = false,
