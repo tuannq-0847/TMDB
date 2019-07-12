@@ -5,4 +5,7 @@
     <string name="theater">In theater now</string>
     <string name="popular">Popular now</string>
     <string name="top_rate">Top rated</string>
+    <string name="overview">Overview</string>
+    <string name="cast">Cast</string>
+    <string name="related">Related Movies</string>
 </resources>

@@ -8,4 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="ButtonGenres" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:background">@drawable/background_button</item>
+    </style>
 </resources>

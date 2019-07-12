@@ -10,26 +10,32 @@
             type="com.rikkeisoft.moviedb.ui.main.MainViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <FrameLayout
+        android:id="@+id/layoutParent"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.main.MainActivity">
+        android:layout_height="match_parent">
 
-        <FrameLayout
-            android:id="@+id/layoutParent"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottomNavigation"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:labelVisibilityMode="unlabeled"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:menu="@menu/menu_bottom_navigation" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_height="match_parent"
+            tools:context=".ui.main.MainActivity">
+
+            <FrameLayout
+                android:id="@+id/layoutChild"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottomNavigation"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:labelVisibilityMode="unlabeled"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:menu="@menu/menu_bottom_navigation" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
 </layout>
