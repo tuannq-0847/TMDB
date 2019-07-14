@@ -7,8 +7,6 @@ import io.reactivex.Single
 import javax.inject.Inject
 
 class DetailLocalDataSource @Inject constructor(private val favoriteDao: FavoriteDao) : DetailMovieDataSource.Local {
-    override fun queryMovieInFavorite(idMovie: Int): Single<Int> =
-        favoriteDao.queryMovieInFavorite(idMovie)
 
     override fun insertFavoriteMovie(movieResult: MovieResult) = favoriteDao.saveFavorite(movieResult)
 
