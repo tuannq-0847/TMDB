@@ -1,19 +1,24 @@
 package com.rikkeisoft.moviedb.ui.detail
 
 import android.os.Bundle
+import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.Observer
 import com.rikkeisoft.moviedb.R
 import com.rikkeisoft.moviedb.data.model.MovieResult
 import com.rikkeisoft.moviedb.databinding.FragmentDetailScreenBinding
 import com.rikkeisoft.moviedb.ui.base.BaseFragment
 import com.rikkeisoft.moviedb.ui.moviehome.MovieHomeChildAdapter
+import kotlinx.android.synthetic.main.fragment_detail_screen.fabAddFav
+import kotlinx.android.synthetic.main.fragment_detail_screen.nestedScrollDetail
 import kotlinx.android.synthetic.main.fragment_detail_screen.recyclerCasting
 import kotlinx.android.synthetic.main.fragment_detail_screen.recyclerSimilarMovie
 import kotlinx.android.synthetic.main.fragment_detail_screen.toolbarDetail
 import javax.inject.Inject
 import javax.inject.Named
 
-class DetailFragment : BaseFragment<FragmentDetailScreenBinding, DetailViewModel>() {
+class DetailFragment : BaseFragment<FragmentDetailScreenBinding, DetailViewModel>(),
+    NestedScrollView.OnScrollChangeListener {
+
     override val layoutId: Int = R.layout.fragment_detail_screen
     private val castAdapter by lazy { DetailCastAdapter(mutableListOf()) }
     private val similarAdapter by lazy {
@@ -34,8 +39,17 @@ class DetailFragment : BaseFragment<FragmentDetailScreenBinding, DetailViewModel
         }
     }
 
+    override fun onScrollChange(v: NestedScrollView?, scrollX: Int, scrollY: Int, oldScrollX: Int, oldScrollY: Int) {
+        if (scrollY > oldScrollY) {
+            fabAddFav.hide()
+        } else {
+            fabAddFav.show()
+        }
+    }
+
     override fun initComponents() {
         showBackButton()
+        nestedScrollDetail.setOnScrollChangeListener(this)
         val data = arguments?.getParcelable<MovieResult>(ARGUMENT_MOVIE)
         data?.let {
             viewModel.setDetailMovie(it)
