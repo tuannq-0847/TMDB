@@ -21,7 +21,8 @@
             <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:contentScrim="?attr/colorPrimary"
+                android:background="@android:color/white"
+                app:contentScrim="@android:color/white"
                 app:expandedTitleGravity="top"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
@@ -79,7 +80,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/titleMovie"
+                    android:id="@+id/textTitleMovie"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dp_16"
@@ -91,6 +92,33 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <androidx.appcompat.widget.AppCompatRatingBar
+                    android:id="@+id/ratingBarDetail"
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="@dimen/dp_16"
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:isIndicator="true"
+                    android:numStars="5"
+                    android:progressTint="@color/colorYellow"
+                    android:secondaryProgressTint="@color/colorYellow"
+                    app:layout_constraintBottom_toBottomOf="@+id/textVote"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textVote"
+                    bind:handleRatingBar="@{viewModel.voteRating}" />
+
+                <TextView
+                    android:id="@+id/textVote"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_8"
+                    android:text="@{viewModel.voteRating+``}"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/sp_22"
+                    app:layout_constraintStart_toEndOf="@+id/ratingBarDetail"
+                    app:layout_constraintTop_toBottomOf="@+id/textTitleMovie" />
+
                 <TextView
                     android:id="@+id/textDate"
                     android:layout_width="wrap_content"
@@ -100,7 +128,7 @@
                     android:text="@{viewModel.releaseDate}"
                     android:textSize="@dimen/sp_16"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/titleMovie" />
+                    app:layout_constraintTop_toBottomOf="@+id/ratingBarDetail" />
 
                 <TextView
                     android:id="@+id/textOverview"
@@ -154,7 +182,7 @@
                 <TextView
                     android:id="@+id/textSimilarMovies"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dp_16"
                     android:layout_marginTop="@dimen/dp_8"
                     android:text="@string/related"

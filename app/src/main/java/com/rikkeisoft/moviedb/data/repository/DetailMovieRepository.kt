@@ -14,17 +14,13 @@ class DetailMovieRepository @Inject constructor(
     private val detailMovieLocalDataSource: DetailMovieDataSource.Local
 ) : DetailMovieDataSource.Remote, DetailMovieDataSource.Local {
 
-    override fun queryMovieInFavoriteById(idMovie: Int): Single<Boolean> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun queryMovieInFavorite(idMovie: Int): Single<Int> =
+        detailMovieLocalDataSource.queryMovieInFavorite(idMovie)
 
-    override fun insertFavoriteMovie(movieResult: MovieResult) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun insertFavoriteMovie(movieResult: MovieResult) =
+        detailMovieLocalDataSource.insertFavoriteMovie(movieResult)
 
-    override fun deleteFavoriteMovie(movieId: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun deleteFavoriteMovie(movieId: Int) = detailMovieLocalDataSource.deleteFavoriteMovie(movieId)
 
     override fun getCreditsByIdMovie(id: Int): Single<CastDetailMovie> =
         detailMovieRemoteDataSource.getCreditsByIdMovie(id)

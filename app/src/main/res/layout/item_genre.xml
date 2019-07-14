@@ -5,16 +5,14 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="@dimen/dp_8">
+        android:padding="@dimen/dp_4">
 
-        <Button
+        <TextView
             android:id="@+id/textGenre"
-            style="@style/Theme.AppCompat.Light.NoActionBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"
             android:textSize="@dimen/sp_14"
-            android:theme="@style/ButtonGenres"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

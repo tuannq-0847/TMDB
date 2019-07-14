@@ -23,5 +23,9 @@ abstract class DataSourceModule {
 
     @Singleton
     @Binds
-    abstract fun provideDetailRemoteDataSource(detailMovieLocalDataSource: DetailLocalDataSource): DetailMovieDataSource.Local
+    abstract fun provideDetailLocalDataSource(detailMovieLocalDataSource: DetailLocalDataSource): DetailMovieDataSource.Local
+
+    @Singleton
+    @Binds
+    abstract fun provideDetailRemoteDataSource(detailMovieRemoteDataSource: DetailMovieRemoteDataSource): DetailMovieDataSource.Remote
 }

@@ -23,6 +23,7 @@ class DetailViewModel @Inject constructor(
     val imageSizeBlur by lazy { MutableLiveData<String>() }
     val casters by lazy { MutableLiveData<MutableList<CastDetail>>() }
     val similarMovies by lazy { MutableLiveData<MutableList<MovieResult>>() }
+    val voteRating by lazy { MutableLiveData<Double>() }
 
     fun setDetailMovie(movieResult: MovieResult) {
         titleMovie.value = movieResult.titleMovie
@@ -31,6 +32,7 @@ class DetailViewModel @Inject constructor(
         posterImage.value = movieResult.posterPath
         imageSize.value = Constants.SIZE_W185
         imageSizeBlur.value = Constants.SIZE_ORIGINAL
+        voteRating.value = movieResult.voteAverage
     }
 
     fun getDetail(idMovie: Int) {
