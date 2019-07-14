@@ -32,5 +32,8 @@ data class MovieResult(
     @SerializedName("overview")
     var overView: String = "default",
     @SerializedName("release_date")
-    var releaseDate: String? = null
+    var releaseDate: String? = null,
+    val imageSize: String = "w185",
+    val imageSizeBlur: String = "original",
+    var isFavorite: Boolean? = false
 ) : Parcelable

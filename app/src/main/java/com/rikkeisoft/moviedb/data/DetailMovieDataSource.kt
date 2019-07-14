@@ -12,7 +12,6 @@ interface DetailMovieDataSource {
     }
 
     interface Local {
-        fun queryMovieInFavorite(idMovie: Int): Single<Int>
         fun insertFavoriteMovie(movieResult: MovieResult)
         fun deleteFavoriteMovie(movieId: Int)
     }

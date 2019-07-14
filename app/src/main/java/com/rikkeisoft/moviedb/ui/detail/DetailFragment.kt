@@ -52,20 +52,10 @@ class DetailFragment : BaseFragment<FragmentDetailScreenBinding, DetailViewModel
         nestedScrollDetail.setOnScrollChangeListener(this)
         val data = arguments?.getParcelable<MovieResult>(ARGUMENT_MOVIE)
         data?.let {
-            viewModel.setDetailMovie(it)
-            viewModel.getDetail(it.idMovie)
+            viewModel.getDetail(it)
         }
         recyclerCasting.adapter = castAdapter
         recyclerSimilarMovie.adapter = similarAdapter
-    }
-
-    private fun showBackButton() {
-        toolbarDetail.run {
-            setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
-            setNavigationOnClickListener {
-                activity?.onBackPressed()
-            }
-        }
     }
 
     override fun doObserve() {
@@ -84,6 +74,16 @@ class DetailFragment : BaseFragment<FragmentDetailScreenBinding, DetailViewModel
             ?.addToBackStack(null)
             ?.commit()
     }
+
+    private fun showBackButton() {
+        toolbarDetail.run {
+            setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
+            setNavigationOnClickListener {
+                activity?.onBackPressed()
+            }
+        }
+    }
+
 
     companion object {
 

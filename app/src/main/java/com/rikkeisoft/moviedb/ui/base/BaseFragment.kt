@@ -39,6 +39,7 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment
         super.onViewCreated(view, savedInstanceState)
         initViewModel()
         viewBinding.run {
+            lifecycleOwner = this@BaseFragment
             setVariable(BR.viewModel, viewModel)
         }
         initComponents()

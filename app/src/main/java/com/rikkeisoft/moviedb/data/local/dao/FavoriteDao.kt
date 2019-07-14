@@ -15,7 +15,4 @@ abstract class FavoriteDao {
 
     @Query("delete from $TABLE_FAVORITE where idMovie =:idMovie")
     abstract fun deleteFavorite(idMovie: Int)
-
-    @Query("select count(*) from $TABLE_FAVORITE where idMovie=:idMovie")
-    abstract fun queryMovieInFavorite(idMovie: Int): Single<Int>
 }

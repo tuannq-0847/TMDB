@@ -14,9 +14,6 @@ class DetailMovieRepository @Inject constructor(
     private val detailMovieLocalDataSource: DetailMovieDataSource.Local
 ) : DetailMovieDataSource.Remote, DetailMovieDataSource.Local {
 
-    override fun queryMovieInFavorite(idMovie: Int): Single<Int> =
-        detailMovieLocalDataSource.queryMovieInFavorite(idMovie)
-
     override fun insertFavoriteMovie(movieResult: MovieResult) =
         detailMovieLocalDataSource.insertFavoriteMovie(movieResult)
 

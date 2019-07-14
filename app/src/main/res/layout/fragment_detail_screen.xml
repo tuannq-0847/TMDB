@@ -36,8 +36,8 @@
                     app:layout_collapseParallaxMultiplier="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    bind:showImagePoster="@{viewModel.posterImage}"
-                    bind:sizeImage="@{viewModel.imageSizeBlur}" />
+                    bind:showImagePoster="@{viewModel.movie.backDropPath}"
+                    bind:sizeImage="@{viewModel.movie.imageSizeBlur}" />
 
 
                 <FrameLayout
@@ -55,8 +55,8 @@
                         app:layout_collapseMode="parallax"
                         app:layout_collapseParallaxMultiplier="0.5"
                         app:riv_corner_radius="@dimen/dp_8"
-                        bind:showImagePoster="@{viewModel.posterImage}"
-                        bind:sizeImage="@{viewModel.imageSize}" />
+                        bind:showImagePoster="@{viewModel.movie.posterPath}"
+                        bind:sizeImage="@{viewModel.movie.imageSize}" />
                 </FrameLayout>
 
                 <androidx.appcompat.widget.Toolbar
@@ -85,7 +85,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dp_16"
                     android:layout_marginTop="@dimen/dp_16"
-                    android:text="@{viewModel.titleMovie}"
+                    android:text="@{viewModel.movie.titleMovie}"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/sp_22"
                     android:textStyle="bold"
@@ -106,14 +106,14 @@
                     app:layout_constraintBottom_toBottomOf="@+id/textVote"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/textVote"
-                    bind:handleRatingBar="@{viewModel.voteRating}" />
+                    bind:handleRatingBar="@{viewModel.movie.voteAverage}" />
 
                 <TextView
                     android:id="@+id/textVote"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dp_8"
-                    android:text="@{viewModel.voteRating+``}"
+                    android:text="@{viewModel.movie.voteAverage+``}"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/sp_22"
                     app:layout_constraintStart_toEndOf="@+id/ratingBarDetail"
@@ -125,7 +125,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dp_16"
                     android:layout_marginTop="@dimen/dp_8"
-                    android:text="@{viewModel.releaseDate}"
+                    android:text="@{viewModel.movie.releaseDate}"
                     android:textSize="@dimen/sp_16"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/ratingBarDetail" />
@@ -150,7 +150,7 @@
                     android:layout_marginStart="@dimen/dp_16"
                     android:layout_marginTop="@dimen/dp_8"
                     android:paddingEnd="@dimen/dp_16"
-                    android:text="@{viewModel.overview}"
+                    android:text="@{viewModel.movie.overView}"
                     android:textSize="@dimen/sp_16"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textOverview" />
@@ -217,7 +217,8 @@
                 android:layout_gravity="bottom|end"
                 android:layout_marginBottom="@dimen/dp_16"
                 android:layout_marginEnd="@dimen/dp_16"
-                android:src="@drawable/ic_checked" />
+                android:onClick="@{() -> viewModel.onClickFavoriteItem(viewModel.movie.isFavorite)}"
+                bind:favoriteStatus="@{viewModel.movie.isFavorite}" />
         </FrameLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

@@ -6,8 +6,10 @@ import com.rikkeisoft.moviedb.data.model.CastDetailMovie.CastDetail
 import com.rikkeisoft.moviedb.data.model.MovieResult
 import com.rikkeisoft.moviedb.data.repository.DetailMovieRepository
 import com.rikkeisoft.moviedb.ui.base.BaseViewModel
-import com.rikkeisoft.moviedb.utils.Constants
 import com.rikkeisoft.moviedb.utils.handleLoading
+import io.reactivex.Completable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class DetailViewModel @Inject constructor(
@@ -15,29 +17,15 @@ class DetailViewModel @Inject constructor(
     application: Application
 ) : BaseViewModel(application) {
 
-    val titleMovie by lazy { MutableLiveData<String>() }
-    val overview by lazy { MutableLiveData<String>() }
-    val releaseDate by lazy { MutableLiveData<String>() }
-    val posterImage by lazy { MutableLiveData<String>() }
-    val imageSize by lazy { MutableLiveData<String>() }
-    val imageSizeBlur by lazy { MutableLiveData<String>() }
+    val movie by lazy { MutableLiveData<MovieResult>() }
     val casters by lazy { MutableLiveData<MutableList<CastDetail>>() }
     val similarMovies by lazy { MutableLiveData<MutableList<MovieResult>>() }
-    val voteRating by lazy { MutableLiveData<Double>() }
+    var favoriteStatus = MutableLiveData<Boolean>()
 
-    fun setDetailMovie(movieResult: MovieResult) {
-        titleMovie.value = movieResult.titleMovie
-        overview.value = movieResult.overView
-        releaseDate.value = movieResult.releaseDate
-        posterImage.value = movieResult.posterPath
-        imageSize.value = Constants.SIZE_W185
-        imageSizeBlur.value = Constants.SIZE_ORIGINAL
-        voteRating.value = movieResult.voteAverage
-    }
-
-    fun getDetail(idMovie: Int) {
+    fun getDetail(movieResult: MovieResult) {
+        movie.value = movieResult
         compositeDisposable.addAll(
-            detailMovieRepository.getCreditsByIdMovie(idMovie)
+            detailMovieRepository.getCreditsByIdMovie(movieResult.idMovie)
                 .handleLoading(loading)
                 .map {
                     it.casters
@@ -47,7 +35,7 @@ class DetailViewModel @Inject constructor(
                 }, {
                     error.value = it
                 }),
-            detailMovieRepository.getSimilarsMovieById(idMovie)
+            detailMovieRepository.getSimilarsMovieById(movieResult.idMovie)
                 .handleLoading(loading)
                 .map {
                     it.results
@@ -58,6 +46,45 @@ class DetailViewModel @Inject constructor(
                     error.value = it
                 })
         )
+    }
+
+    fun onClickFavoriteItem(isFavorite: Boolean) {
+        val favoriteMovie = movie.value!!
+        if (isFavorite) {
+            compositeDisposable.add(
+                Completable.fromAction {
+                    detailMovieRepository.deleteFavoriteMovie(favoriteMovie.idMovie)
+                }.observeOn(AndroidSchedulers.mainThread())
+                    .doOnSubscribe {
+                        loading.postValue(true)
+                    }
+                    .doOnTerminate { loading.postValue(false) }
+                    .subscribeOn(Schedulers.io())
+                    .subscribe({
+                        favoriteMovie.isFavorite = false
+                        movie.postValue(favoriteMovie)
+                    }, {
+                        error.postValue(it)
+                    })
+            )
+        } else {
+            compositeDisposable.add(
+                Completable.fromAction {
+                    detailMovieRepository.insertFavoriteMovie(favoriteMovie)
+                }.observeOn(AndroidSchedulers.mainThread())
+                    .doOnSubscribe {
+                        loading.postValue(true)
+                    }
+                    .doOnTerminate { loading.postValue(false) }
+                    .subscribeOn(Schedulers.io())
+                    .subscribe({
+                        favoriteMovie.isFavorite = true
+                        movie.postValue(favoriteMovie)
+                    }, {
+                        error.postValue(it)
+                    })
+            )
+        }
     }
 
     companion object {
