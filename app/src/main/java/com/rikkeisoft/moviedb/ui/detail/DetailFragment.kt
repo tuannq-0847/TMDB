@@ -1,9 +1,10 @@
 package com.rikkeisoft.moviedb.ui.detail
 
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.Observer
-import com.google.android.material.snackbar.Snackbar
 import com.rikkeisoft.moviedb.R
 import com.rikkeisoft.moviedb.data.model.MovieResult
 import com.rikkeisoft.moviedb.databinding.FragmentDetailScreenBinding
@@ -11,6 +12,7 @@ import com.rikkeisoft.moviedb.ui.base.BaseFragment
 import com.rikkeisoft.moviedb.ui.moviehome.MovieHomeChildAdapter
 import com.rikkeisoft.moviedb.utils.showMessage
 import kotlinx.android.synthetic.main.fragment_detail_screen.fabAddFav
+import kotlinx.android.synthetic.main.fragment_detail_screen.layoutEmptyMovie
 import kotlinx.android.synthetic.main.fragment_detail_screen.nestedScrollDetail
 import kotlinx.android.synthetic.main.fragment_detail_screen.recyclerCasting
 import kotlinx.android.synthetic.main.fragment_detail_screen.recyclerSimilarMovie
@@ -66,6 +68,9 @@ class DetailFragment : BaseFragment<FragmentDetailScreenBinding, DetailViewModel
             castAdapter.setData(it)
         })
         viewModel.similarMovies.observe(this, Observer {
+            Log.d("test", it.size.toString())
+            recyclerSimilarMovie.visibility = if (it.isEmpty()) View.GONE else View.VISIBLE
+            layoutEmptyMovie.visibility = if (it.isEmpty()) View.VISIBLE else View.GONE
             similarAdapter.setData(it)
         })
         viewModel.favoriteResult.observe(this, Observer {

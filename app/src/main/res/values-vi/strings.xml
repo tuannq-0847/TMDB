@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">MyMovieDB</string>
     <string name="genres">Thể loại</string>
     <string name="movies">Phim</string>
@@ -11,4 +12,8 @@
     <string name="related">Phim liên quan</string>
     <string name="save_successfully">Đã lưu phim vào trong yêu thích</string>
     <string name="remove_successfully">Đã xóa phim trong yêu thích</string>
+    <string name="device_offline">Không thể kết nối mạng</string>
+    <string name="content_network_error">Hãy kiểm tra lại kết nối</string>
+    <string name="retry">THỬ LẠI</string>
+    <string name="no_data">Không có dữ liệu</string>
 </resources>

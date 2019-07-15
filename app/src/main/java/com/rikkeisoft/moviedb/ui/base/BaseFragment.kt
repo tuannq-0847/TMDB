@@ -11,9 +11,12 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.rikkeisoft.moviedb.BR
+import com.rikkeisoft.moviedb.R.layout
+import com.rikkeisoft.moviedb.ui.dialog.NetworkErrorDialog
 import com.rikkeisoft.moviedb.ui.dialog.ProcessLoadingDialog
 import com.rikkeisoft.moviedb.utils.showMessage
 import dagger.android.support.AndroidSupportInjection
+import java.net.UnknownHostException
 
 abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment() {
     @get:LayoutRes
@@ -21,7 +24,14 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment
 
     protected open lateinit var viewModel: VM
 
-    private val progressDialog by lazy { ProcessLoadingDialog(context!!) }
+    private val progressDialog by lazy { ProcessLoadingDialog(layout.layout_process_dialog, context!!) }
+
+    private val networkDialog by lazy {
+        NetworkErrorDialog(
+            layout.network_error_dialog,
+            context!!
+        ) { isRefreshing -> listenerDialog(isRefreshing) }
+    }
 
     lateinit var viewBinding: VB
 
@@ -51,8 +61,16 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment
             showLoading(it)
         })
         viewModel.error.observe(this, Observer {
-            showError(it)
+            if (it is UnknownHostException) {
+                showDialogNetworkError()
+            } else {
+                showError(it)
+            }
         })
+    }
+
+    private fun showDialogNetworkError() {
+        networkDialog.show()
     }
 
     protected abstract fun initViewModel()
@@ -63,6 +81,13 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment
         when {
             isLoading -> progressDialog.show()
             else -> progressDialog.dismiss()
+        }
+    }
+
+    private fun listenerDialog(isRefreshing: Boolean) {
+        if (isRefreshing) {
+            initComponents()
+            doObserve()
         }
     }
 

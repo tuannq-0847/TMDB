@@ -39,7 +39,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
             R.id.itemSearch -> {
 
             }
-            R.id.itemTV -> {
+            R.id.itemFavorite -> {
                 openFavoriteFragment()
             }
         }

@@ -1,10 +1,12 @@
 package com.rikkeisoft.moviedb.ui.favorite
 
+import android.view.View
 import androidx.lifecycle.Observer
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener
 import com.rikkeisoft.moviedb.R
 import com.rikkeisoft.moviedb.databinding.FragmentFavoriteBinding
 import com.rikkeisoft.moviedb.ui.base.BaseFragment
+import kotlinx.android.synthetic.main.fragment_favorite.layoutEmptyFavorite
 import kotlinx.android.synthetic.main.fragment_favorite.recyclerFavorite
 import kotlinx.android.synthetic.main.fragment_favorite.swipeRefresh
 import javax.inject.Inject
@@ -38,6 +40,8 @@ class FavoriteMovieFragment : BaseFragment<FragmentFavoriteBinding, FavoriteView
     override fun doObserve() {
         super.doObserve()
         viewModel.favorites.observe(this, Observer {
+            recyclerFavorite.visibility = if (it.isEmpty()) View.GONE else View.VISIBLE
+            layoutEmptyFavorite.visibility = if (it.isEmpty()) View.VISIBLE else View.GONE
             adapter.setData(it)
         })
     }

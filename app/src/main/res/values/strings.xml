@@ -1,4 +1,5 @@
 <resources>
+
     <string name="app_name">MyMovieDB</string>
     <string name="genres">Genres</string>
     <string name="movies">Movies</string>
@@ -10,4 +11,8 @@
     <string name="related">Related Movies</string>
     <string name="save_successfully">Saved to favorite</string>
     <string name="remove_successfully">Removed from favorite</string>
+    <string name="device_offline">Device offline</string>
+    <string name="content_network_error">It looks like your\'re offline. Check your connection</string>
+    <string name="retry">RETRY</string>
+    <string name="no_data">No data available</string>
 </resources>

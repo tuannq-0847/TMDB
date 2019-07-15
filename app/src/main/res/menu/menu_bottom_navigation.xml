@@ -7,8 +7,8 @@
         android:title="" />
 
     <item
-        android:id="@+id/itemTV"
-        android:icon="@drawable/ic_tv"
+        android:id="@+id/itemFavorite"
+        android:icon="@drawable/ic_star"
         android:title="" />
 
     <item
