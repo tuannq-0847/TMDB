@@ -14,6 +14,9 @@ class DetailMovieRepository @Inject constructor(
     private val detailMovieLocalDataSource: DetailMovieDataSource.Local
 ) : DetailMovieDataSource.Remote, DetailMovieDataSource.Local {
 
+    override fun getCountRowMovieById(movieId: Int): Single<Int> =
+        detailMovieLocalDataSource.getCountRowMovieById(movieId)
+
     override fun insertFavoriteMovie(movieResult: MovieResult) =
         detailMovieLocalDataSource.insertFavoriteMovie(movieResult)
 

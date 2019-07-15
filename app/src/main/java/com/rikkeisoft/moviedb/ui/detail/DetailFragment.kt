@@ -3,11 +3,13 @@ package com.rikkeisoft.moviedb.ui.detail
 import android.os.Bundle
 import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.Observer
+import com.google.android.material.snackbar.Snackbar
 import com.rikkeisoft.moviedb.R
 import com.rikkeisoft.moviedb.data.model.MovieResult
 import com.rikkeisoft.moviedb.databinding.FragmentDetailScreenBinding
 import com.rikkeisoft.moviedb.ui.base.BaseFragment
 import com.rikkeisoft.moviedb.ui.moviehome.MovieHomeChildAdapter
+import com.rikkeisoft.moviedb.utils.showMessage
 import kotlinx.android.synthetic.main.fragment_detail_screen.fabAddFav
 import kotlinx.android.synthetic.main.fragment_detail_screen.nestedScrollDetail
 import kotlinx.android.synthetic.main.fragment_detail_screen.recyclerCasting
@@ -66,6 +68,13 @@ class DetailFragment : BaseFragment<FragmentDetailScreenBinding, DetailViewModel
         viewModel.similarMovies.observe(this, Observer {
             similarAdapter.setData(it)
         })
+        viewModel.favoriteResult.observe(this, Observer {
+            if (it) {
+                context?.showMessage(resources.getString(R.string.save_successfully))
+            } else {
+                context?.showMessage(resources.getString(R.string.remove_successfully))
+            }
+        })
     }
 
     private fun onItemMovieClickListener(movieResult: MovieResult) {
@@ -83,7 +92,6 @@ class DetailFragment : BaseFragment<FragmentDetailScreenBinding, DetailViewModel
             }
         }
     }
-
 
     companion object {
 

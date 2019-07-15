@@ -9,4 +9,6 @@
     <string name="overview">Tổng quan</string>
     <string name="cast">Diễn viên</string>
     <string name="related">Phim liên quan</string>
+    <string name="save_successfully">Đã lưu phim vào trong yêu thích</string>
+    <string name="remove_successfully">Đã xóa phim trong yêu thích</string>
 </resources>

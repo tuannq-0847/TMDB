@@ -20,7 +20,7 @@ class DetailViewModel @Inject constructor(
     val movie by lazy { MutableLiveData<MovieResult>() }
     val casters by lazy { MutableLiveData<MutableList<CastDetail>>() }
     val similarMovies by lazy { MutableLiveData<MutableList<MovieResult>>() }
-    var favoriteStatus = MutableLiveData<Boolean>()
+    val favoriteResult by lazy { MutableLiveData<Boolean>() }
 
     fun getDetail(movieResult: MovieResult) {
         movie.value = movieResult
@@ -44,6 +44,14 @@ class DetailViewModel @Inject constructor(
                     similarMovies.value = it
                 }, {
                     error.value = it
+                }),
+            detailMovieRepository.getCountRowMovieById(movieResult.idMovie)
+                .handleLoading(loading)
+                .subscribe({
+                    movieResult.isFavorite = it > 0
+                    movie.value = movieResult
+                }, {
+
                 })
         )
     }
@@ -63,6 +71,7 @@ class DetailViewModel @Inject constructor(
                     .subscribe({
                         favoriteMovie.isFavorite = false
                         movie.postValue(favoriteMovie)
+                        favoriteResult.postValue(false)
                     }, {
                         error.postValue(it)
                     })
@@ -80,6 +89,7 @@ class DetailViewModel @Inject constructor(
                     .subscribe({
                         favoriteMovie.isFavorite = true
                         movie.postValue(favoriteMovie)
+                        favoriteResult.postValue(true)
                     }, {
                         error.postValue(it)
                     })

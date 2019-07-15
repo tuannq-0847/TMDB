@@ -12,6 +12,7 @@ interface DetailMovieDataSource {
     }
 
     interface Local {
+        fun getCountRowMovieById(movieId: Int): Single<Int>
         fun insertFavoriteMovie(movieResult: MovieResult)
         fun deleteFavoriteMovie(movieId: Int)
     }
