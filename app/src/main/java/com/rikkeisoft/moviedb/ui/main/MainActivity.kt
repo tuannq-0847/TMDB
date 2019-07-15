@@ -7,6 +7,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.rikkeisoft.moviedb.R
 import com.rikkeisoft.moviedb.databinding.ActivityMainBinding
 import com.rikkeisoft.moviedb.ui.base.BaseActivity
+import com.rikkeisoft.moviedb.ui.favorite.FavoriteMovieFragment
 import com.rikkeisoft.moviedb.ui.moviehome.MovieHomeFragment
 import io.fabric.sdk.android.Fabric
 import kotlinx.android.synthetic.main.activity_main.bottomNavigation
@@ -39,7 +40,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
 
             }
             R.id.itemTV -> {
-
+                openFavoriteFragment()
             }
         }
         return true
@@ -48,6 +49,12 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
     private fun openMovieFragment() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.layoutChild, MovieHomeFragment())
+            .commit()
+    }
+
+    private fun openFavoriteFragment() {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.layoutChild, FavoriteMovieFragment())
             .commit()
     }
 

@@ -3,6 +3,9 @@ package com.rikkeisoft.moviedb.di
 import com.rikkeisoft.moviedb.ui.detail.DetailFragment
 import com.rikkeisoft.moviedb.ui.detail.DetailMovieModule
 import com.rikkeisoft.moviedb.ui.detail.DetailMovieScope
+import com.rikkeisoft.moviedb.ui.favorite.FavoriteModule
+import com.rikkeisoft.moviedb.ui.favorite.FavoriteMovieFragment
+import com.rikkeisoft.moviedb.ui.favorite.FavoriteScope
 import com.rikkeisoft.moviedb.ui.moviehome.MovieHomeFragment
 import com.rikkeisoft.moviedb.ui.moviehome.MovieHomeModule
 import com.rikkeisoft.moviedb.ui.moviehome.MovieHomeScope
@@ -19,4 +22,8 @@ abstract class FragmentModule {
     @ContributesAndroidInjector(modules = [DetailMovieModule::class])
     @DetailMovieScope
     abstract fun contributeMovieDetailFragment(): DetailFragment
+
+    @ContributesAndroidInjector(modules = [FavoriteModule::class])
+    @FavoriteScope
+    abstract fun contributeFavoriteFragment(): FavoriteMovieFragment
 }
