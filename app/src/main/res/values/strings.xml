@@ -8,4 +8,6 @@
     <string name="overview">Overview</string>
     <string name="cast">Cast</string>
     <string name="related">Related Movies</string>
+    <string name="save_successfully">Saved to favorite</string>
+    <string name="remove_successfully">Removed from favorite</string>
 </resources>
