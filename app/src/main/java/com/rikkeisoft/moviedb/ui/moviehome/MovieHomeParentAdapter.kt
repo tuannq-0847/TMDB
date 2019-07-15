@@ -38,7 +38,7 @@ class MovieHomeParentAdapter(
         override fun bindView(position: Int, data: MovieParent) {
             itemView.run {
                 recyclerMovieChild.setRecycledViewPool(viewPool)
-                recyclerMovieChild.adapter = MovieHomeChildAdapter(data.movieResults,listener)
+                recyclerMovieChild.adapter = MovieHomeChildAdapter(data.movieResults, listener)
                 textNameChild.text = data.kindOfMovie
             }
         }

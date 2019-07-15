@@ -9,7 +9,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Entity(tableName = TABLE_FAVORITE)
 @Parcelize
-data class MovieResult(
+open class MovieResult(
     @SerializedName("vote_count")
     var voteCount: Int = 1,
     @SerializedName("id")
