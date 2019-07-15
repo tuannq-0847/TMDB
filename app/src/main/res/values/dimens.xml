@@ -17,4 +17,7 @@
     <dimen name="dp_156">156dp</dimen>
     <dimen name="dp_352">352dp</dimen>
     <dimen name="dp_4">4dp</dimen>
+    <dimen name="dp_6">6dp</dimen>
+    <dimen name="dp_280">280dp</dimen>
+    <dimen name="sp_20">20sp</dimen>
 </resources>

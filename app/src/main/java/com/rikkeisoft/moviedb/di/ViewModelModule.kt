@@ -3,6 +3,7 @@ package com.rikkeisoft.moviedb.di
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.rikkeisoft.moviedb.ui.detail.DetailViewModel
+import com.rikkeisoft.moviedb.ui.favorite.FavoriteViewModel
 import com.rikkeisoft.moviedb.ui.main.MainViewModel
 import com.rikkeisoft.moviedb.ui.moviehome.MovieHomeViewModel
 import com.rikkeisoft.moviedb.utils.MovieViewModelFactory
@@ -29,6 +30,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(DetailViewModel::class)
     abstract fun bindDetailViewModel(detailViewModel: DetailViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(FavoriteViewModel::class)
+    abstract fun bindFavoriteViewModel(favoriteViewModel: FavoriteViewModel): ViewModel
 
     @Binds
     @Singleton

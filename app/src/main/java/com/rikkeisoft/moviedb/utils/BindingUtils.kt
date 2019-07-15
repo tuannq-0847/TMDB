@@ -19,8 +19,8 @@ fun ProgressBar.handleProgress(isLoading: Boolean) {
 fun ImageView.showPoster(url: String?, sizeImage: String?) {
     Glide.with(context)
         .load("${Constants.IMAGE_LINK}$sizeImage$url")
-        .placeholder(R.drawable.background_image)
-        .error(R.drawable.background_image)
+        .placeholder(R.drawable.bg_default_image)
+        .error(R.drawable.bg_default_image)
         .into(this)
 }
 

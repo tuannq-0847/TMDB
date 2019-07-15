@@ -18,4 +18,7 @@ abstract class FavoriteDao {
 
     @Query("select count(*) from $TABLE_FAVORITE where idMovie=:idMovie")
     abstract fun getCountMovieById(idMovie: Int): Single<Int>
+
+    @Query("select * from $TABLE_FAVORITE")
+    abstract fun getAllFavorites(): Single<MutableList<MovieResult>>
 }
