@@ -2,6 +2,7 @@ package com.rikkeisoft.moviedb.data
 
 import com.rikkeisoft.moviedb.data.remote.response.GenreResponse
 import com.rikkeisoft.moviedb.data.remote.response.GetMovieListResponse
+import io.reactivex.Observable
 import io.reactivex.Single
 
 interface MovieDataSource {

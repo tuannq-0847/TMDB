@@ -2,7 +2,7 @@ package com.rikkeisoft.moviedb.data.model
 
 import com.google.gson.annotations.SerializedName
 
-data class SearchResult(
+open class SearchResult(
     @SerializedName("first_air_date")
     var firstAirDate: String = "",
     @SerializedName("media_type")

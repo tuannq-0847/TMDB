@@ -2,8 +2,8 @@ package com.rikkeisoft.moviedb.ui.detail
 
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
-import com.rikkeisoft.moviedb.data.model.CastDetailMovie.CastDetail
 import com.rikkeisoft.moviedb.data.model.MovieResult
+import com.rikkeisoft.moviedb.data.model.SearchResult
 import com.rikkeisoft.moviedb.data.repository.DetailMovieRepository
 import com.rikkeisoft.moviedb.ui.base.BaseViewModel
 import com.rikkeisoft.moviedb.utils.handleLoading
@@ -18,7 +18,7 @@ class DetailViewModel @Inject constructor(
 ) : BaseViewModel(application) {
 
     val movie by lazy { MutableLiveData<MovieResult>() }
-    val casters by lazy { MutableLiveData<MutableList<CastDetail>>() }
+    val casters by lazy { MutableLiveData<MutableList<SearchResult>>() }
     val similarMovies by lazy { MutableLiveData<MutableList<MovieResult>>() }
     val favoriteResult by lazy { MutableLiveData<Boolean>() }
 

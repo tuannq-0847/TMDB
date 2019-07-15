@@ -10,6 +10,7 @@ import com.rikkeisoft.moviedb.ui.base.BaseFragment
 import com.rikkeisoft.moviedb.ui.detail.DetailCastAdapter
 import com.rikkeisoft.moviedb.ui.moviehome.MovieHomeParentAdapter
 import kotlinx.android.synthetic.main.fragment_search_movie.layoutEmptySearch
+import kotlinx.android.synthetic.main.fragment_search_movie.recyclerActors
 import kotlinx.android.synthetic.main.fragment_search_movie.recyclerSearchParent
 import kotlinx.android.synthetic.main.fragment_search_movie.searchMovie
 import javax.inject.Inject
@@ -41,6 +42,7 @@ class SearchFragment : BaseFragment<FragmentSearchMovieBinding, SearchViewModel>
     override fun initComponents() {
         searchMovie.setOnQueryTextListener(this)
         recyclerSearchParent.adapter = adapter
+        recyclerActors.adapter = actorAdapter
         layoutEmptySearch.visibility = View.VISIBLE
     }
 

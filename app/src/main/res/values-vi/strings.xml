@@ -16,4 +16,5 @@
     <string name="content_network_error">Hãy kiểm tra lại kết nối</string>
     <string name="retry">THỬ LẠI</string>
     <string name="no_data">Không có dữ liệu</string>
+    <string name="tv_series">Tv Series</string>
 </resources>

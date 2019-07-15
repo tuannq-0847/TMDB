@@ -1,8 +1,8 @@
 package com.rikkeisoft.moviedb.data.repository
 
 import com.rikkeisoft.moviedb.data.DetailMovieDataSource
-import com.rikkeisoft.moviedb.data.model.CastDetailMovie
 import com.rikkeisoft.moviedb.data.model.MovieResult
+import com.rikkeisoft.moviedb.data.remote.response.CastDetailMovieResponse
 import com.rikkeisoft.moviedb.data.remote.response.GetMovieListResponse
 import io.reactivex.Single
 import javax.inject.Inject
@@ -22,7 +22,7 @@ class DetailMovieRepository @Inject constructor(
 
     override fun deleteFavoriteMovie(movieId: Int) = detailMovieLocalDataSource.deleteFavoriteMovie(movieId)
 
-    override fun getCreditsByIdMovie(id: Int): Single<CastDetailMovie> =
+    override fun getCreditsByIdMovie(id: Int): Single<CastDetailMovieResponse> =
         detailMovieRemoteDataSource.getCreditsByIdMovie(id)
 
     override fun getSimilarsMovieById(id: Int): Single<GetMovieListResponse> =

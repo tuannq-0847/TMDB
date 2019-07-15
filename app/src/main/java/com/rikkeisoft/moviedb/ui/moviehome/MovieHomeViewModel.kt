@@ -11,7 +11,9 @@ import com.rikkeisoft.moviedb.data.repository.MovieRepository
 import com.rikkeisoft.moviedb.ui.base.BaseViewModel
 import com.rikkeisoft.moviedb.utils.handleLoading
 import io.reactivex.Single
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.Function3
+import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class MovieHomeViewModel @Inject constructor(
@@ -44,7 +46,8 @@ class MovieHomeViewModel @Inject constructor(
                 error.value = it
             }),
             movieRepository.getMovieGenresFilms()
-                .handleLoading(loading)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
                 .subscribe({
                     _genres.value = it
                 }, {

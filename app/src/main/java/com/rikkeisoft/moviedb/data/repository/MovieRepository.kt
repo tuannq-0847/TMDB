@@ -3,6 +3,7 @@ package com.rikkeisoft.moviedb.data.repository
 import com.rikkeisoft.moviedb.data.MovieDataSource
 import com.rikkeisoft.moviedb.data.remote.response.GenreResponse
 import com.rikkeisoft.moviedb.data.remote.response.GetMovieListResponse
+import io.reactivex.Observable
 import io.reactivex.Single
 import javax.inject.Inject
 import javax.inject.Singleton

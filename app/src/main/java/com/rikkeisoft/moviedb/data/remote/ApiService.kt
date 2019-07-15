@@ -1,8 +1,8 @@
 package com.rikkeisoft.moviedb.data.remote
 
-import com.rikkeisoft.moviedb.data.model.CastDetailMovie
 import com.rikkeisoft.moviedb.data.model.SearchResult
 import com.rikkeisoft.moviedb.data.remote.response.BaseMovieResponse
+import com.rikkeisoft.moviedb.data.remote.response.CastDetailMovieResponse
 import com.rikkeisoft.moviedb.data.remote.response.GenreResponse
 import com.rikkeisoft.moviedb.data.remote.response.GetMovieListResponse
 import io.reactivex.Observable
@@ -25,7 +25,7 @@ interface ApiService {
     fun getGenreMovies(): Single<GenreResponse>
 
     @GET("3/movie/{id}/credits")
-    fun getCreditsByIdMovie(@Path("id") id: Int): Single<CastDetailMovie>
+    fun getCreditsByIdMovie(@Path("id") id: Int): Single<CastDetailMovieResponse>
 
     @GET("3/search/multi")
     fun getResultBySearch(@Query("query") query: String): Observable<BaseMovieResponse<SearchResult>>

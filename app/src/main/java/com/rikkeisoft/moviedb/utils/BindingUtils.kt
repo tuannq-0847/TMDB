@@ -1,6 +1,5 @@
 package com.rikkeisoft.moviedb.utils
 
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar

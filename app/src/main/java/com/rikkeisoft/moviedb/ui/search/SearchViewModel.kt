@@ -2,9 +2,10 @@ package com.rikkeisoft.moviedb.ui.search
 
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
-import com.rikkeisoft.moviedb.data.model.CastDetailMovie.CastDetail
+import com.rikkeisoft.moviedb.R
 import com.rikkeisoft.moviedb.data.model.MovieParent
 import com.rikkeisoft.moviedb.data.model.MovieResult
+import com.rikkeisoft.moviedb.data.model.SearchResult
 import com.rikkeisoft.moviedb.data.repository.SearchRepository
 import com.rikkeisoft.moviedb.ui.base.BaseViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -17,8 +18,10 @@ class SearchViewModel @Inject constructor(
     application: Application
 ) : BaseViewModel(application) {
 
+    private val context = getApplication<Application>().applicationContext
+
     val searchResults by lazy { MutableLiveData<MutableList<MovieParent>>() }
-    val castDetails by lazy { MutableLiveData<MutableList<CastDetail>>() }
+    val castDetails by lazy { MutableLiveData<MutableList<SearchResult>>() }
 
     fun getResult(query: String) {
         compositeDisposable.add(
@@ -32,16 +35,26 @@ class SearchViewModel @Inject constructor(
                 .subscribe({
                     val movieParents: MutableList<MovieParent> = ArrayList()
                     val listMovie = it.filter { searchResult ->
-                        searchResult.mediaType == "movie"
+                        searchResult.mediaType == MOVIE
                     }
                     val listTv = it.filter { searchResult ->
-                        searchResult.mediaType == "tv"
+                        searchResult.mediaType == TV
                     }
                     val people = it.filter { searchResult ->
-                        searchResult.mediaType == "person"
-                    } as MutableList<CastDetail>
-                    movieParents.add(MovieParent("test", listMovie as MutableList<MovieResult>))
-                    movieParents.add(MovieParent("test1", listTv as MutableList<MovieResult>))
+                        searchResult.mediaType == PERSON
+                    } as MutableList<SearchResult>
+                    movieParents.add(
+                        MovieParent(
+                            context.getString(R.string.movies),
+                            listMovie as MutableList<MovieResult>
+                        )
+                    )
+                    movieParents.add(
+                        MovieParent(
+                            context.getString(R.string.tv_series),
+                            listTv as MutableList<MovieResult>
+                        )
+                    )
                     searchResults.value = movieParents
                     castDetails.value = people
                 }, {
@@ -53,5 +66,8 @@ class SearchViewModel @Inject constructor(
     companion object {
         const val ONE_SECONDS: Long = 1000
         const val NAME = "SearchViewModel"
+        const val MOVIE = "movie"
+        const val TV = "tv"
+        const val PERSON = "person"
     }
 }
