@@ -9,6 +9,7 @@ import com.rikkeisoft.moviedb.databinding.ActivityMainBinding
 import com.rikkeisoft.moviedb.ui.base.BaseActivity
 import com.rikkeisoft.moviedb.ui.favorite.FavoriteMovieFragment
 import com.rikkeisoft.moviedb.ui.moviehome.MovieHomeFragment
+import com.rikkeisoft.moviedb.ui.search.SearchFragment
 import io.fabric.sdk.android.Fabric
 import kotlinx.android.synthetic.main.activity_main.bottomNavigation
 import javax.inject.Inject
@@ -37,7 +38,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
                 openMovieFragment()
             }
             R.id.itemSearch -> {
-
+                openSearchFragment()
             }
             R.id.itemFavorite -> {
                 openFavoriteFragment()
@@ -55,6 +56,12 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
     private fun openFavoriteFragment() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.layoutChild, FavoriteMovieFragment())
+            .commit()
+    }
+
+    private fun openSearchFragment() {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.layoutChild, SearchFragment())
             .commit()
     }
 
