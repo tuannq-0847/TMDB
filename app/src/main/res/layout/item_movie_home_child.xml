@@ -58,6 +58,5 @@
             android:text="@{movieResult.voteAverage+``}"
             app:layout_constraintStart_toEndOf="@+id/ratingBarMovie"
             app:layout_constraintTop_toBottomOf="@+id/textNameMovie" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
