@@ -17,6 +17,8 @@ import com.rikkeisoft.moviedb.ui.dialog.ProcessLoadingDialog
 import com.rikkeisoft.moviedb.utils.showMessage
 import dagger.android.support.AndroidSupportInjection
 import java.net.UnknownHostException
+import androidx.appcompat.view.ContextThemeWrapper
+import com.rikkeisoft.moviedb.R
 
 abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment() {
     @get:LayoutRes
@@ -41,7 +43,13 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        viewBinding = DataBindingUtil.inflate(inflater, layoutId, container, false)
+        val context = ContextThemeWrapper(
+            activity,
+            R.style.AppTheme
+        )
+
+        val localInflater = inflater.cloneInContext(context)
+        viewBinding = DataBindingUtil.inflate(localInflater, layoutId, container, false)
         return viewBinding.root
     }
 
