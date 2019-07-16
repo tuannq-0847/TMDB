@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import com.crashlytics.android.Crashlytics
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.rikkeisoft.moviedb.R
+import com.rikkeisoft.moviedb.data.local.pref.AppPref
 import com.rikkeisoft.moviedb.databinding.ActivityMainBinding
 import com.rikkeisoft.moviedb.ui.base.BaseActivity
 import com.rikkeisoft.moviedb.ui.dialog.ThemeDialog
@@ -21,23 +22,31 @@ import javax.inject.Named
 class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
     BottomNavigationView.OnNavigationItemSelectedListener {
 
+    @Inject
+    lateinit var appPref: AppPref
+
     override val layoutId: Int = R.layout.activity_main
 
     private val themeDialog by lazy {
-        ThemeDialog(R.layout.theme_dialog, this) { isChanged ->
-            listenerThemeChange(
-                isChanged
-            )
+        ThemeDialog(R.layout.theme_dialog, this, appPref) { isChanged ->
+            listenerThemeChange(isChanged)
         }
     }
+
     @Inject
     @field:Named(MainViewModel.NAME)
     lateinit var mainViewModel: MainViewModel
 
     override fun initComponents() {
+        checkPreference()
         setSupportActionBar(toolbarMain)
         bottomNavigation.setOnNavigationItemSelectedListener(this)
         openMovieFragment()
+    }
+
+    private fun checkPreference() = when {
+        !appPref.getRef() -> delegate.localNightMode = AppCompatDelegate.MODE_NIGHT_NO
+        else -> delegate.localNightMode = AppCompatDelegate.MODE_NIGHT_YES
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -103,7 +112,9 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
 
     private fun listenerThemeChange(isChanged: Boolean) = if (isChanged) {
         delegate.localNightMode = AppCompatDelegate.MODE_NIGHT_NO
+        appPref.saveRef(false)
     } else {
         delegate.localNightMode = AppCompatDelegate.MODE_NIGHT_YES
+        appPref.saveRef(true)
     }
 }
