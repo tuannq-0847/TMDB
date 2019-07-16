@@ -16,4 +16,10 @@
     <string name="retry">RETRY</string>
     <string name="no_data">No data available</string>
     <string name="tv_series">Tv Series</string>
+    <string name="search">Search</string>
+    <string name="favorite">Favorite</string>
+    <string name="setting">Setting</string>
+    <string name="dark">Dark theme</string>
+    <string name="light">Light theme</string>
+    <string name="cancel">Cancel</string>
 </resources>

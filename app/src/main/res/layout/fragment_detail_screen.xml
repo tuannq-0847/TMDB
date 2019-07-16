@@ -21,8 +21,8 @@
             <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@android:color/white"
-                app:contentScrim="@android:color/white"
+                android:background="?attr/colorSurface"
+                app:contentScrim="?attr/colorSurface"
                 app:expandedTitleGravity="top"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
@@ -71,7 +71,7 @@
             android:id="@+id/nestedScrollDetail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/white"
+            android:background="?attr/colorSurface"
             android:fillViewport="true"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
@@ -86,7 +86,7 @@
                     android:layout_marginStart="@dimen/dp_16"
                     android:layout_marginTop="@dimen/dp_16"
                     android:text="@{viewModel.movie.titleMovie}"
-                    android:textColor="@android:color/black"
+                    android:textColor="?android:attr/textColorPrimary"
                     android:textSize="@dimen/sp_22"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
@@ -114,7 +114,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dp_8"
                     android:text="@{viewModel.movie.voteAverage+``}"
-                    android:textColor="@android:color/black"
+                    android:textColor="?android:attr/textColorPrimary"
                     android:textSize="@dimen/sp_22"
                     app:layout_constraintStart_toEndOf="@+id/ratingBarDetail"
                     app:layout_constraintTop_toBottomOf="@+id/textTitleMovie" />
@@ -137,7 +137,7 @@
                     android:layout_marginStart="@dimen/dp_16"
                     android:layout_marginTop="@dimen/dp_16"
                     android:text="@string/overview"
-                    android:textColor="@android:color/black"
+                    android:textColor="?android:attr/textColorPrimary"
                     android:textSize="@dimen/sp_16"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
@@ -162,7 +162,7 @@
                     android:layout_marginStart="@dimen/dp_16"
                     android:layout_marginTop="@dimen/dp_16"
                     android:text="@string/cast"
-                    android:textColor="@android:color/black"
+                    android:textColor="?android:attr/textColorPrimary"
                     android:textSize="@dimen/sp_16"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
@@ -186,7 +186,7 @@
                     android:layout_marginStart="@dimen/dp_16"
                     android:layout_marginTop="@dimen/dp_8"
                     android:text="@string/related"
-                    android:textColor="@android:color/black"
+                    android:textColor="?android:attr/textColorPrimary"
                     android:textSize="@dimen/sp_16"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"

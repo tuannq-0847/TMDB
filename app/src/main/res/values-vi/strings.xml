@@ -17,4 +17,10 @@
     <string name="retry">THỬ LẠI</string>
     <string name="no_data">Không có dữ liệu</string>
     <string name="tv_series">Tv Series</string>
+    <string name="search">Tìm kiếm</string>
+    <string name="favorite">Yêu thích</string>
+    <string name="setting">Cài đặt</string>
+    <string name="dark">Chủ đề tối</string>
+    <string name="light">Chủ đề sáng</string>
+    <string name="cancel">Hủy bỏ</string>
 </resources>

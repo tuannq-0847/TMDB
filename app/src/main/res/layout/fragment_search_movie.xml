@@ -16,8 +16,12 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/dp_16"
                 android:background="@drawable/background_button"
+                app:iconifiedByDefault="false"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:queryBackground="@android:color/transparent"
+                app:queryHint="@string/search"
+                app:searchHintIcon="@drawable/ic_search" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerSearchParent"
@@ -29,6 +33,19 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/searchMovie" />
 
+            <TextView
+                android:id="@+id/textActor"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/dp_16"
+                android:layout_marginTop="@dimen/dp_8"
+                android:text="@string/cast"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textSize="@dimen/sp_16"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recyclerSearchParent" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerActors"
                 android:layout_width="match_parent"
@@ -38,7 +55,7 @@
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recyclerSearchParent" />
+                app:layout_constraintTop_toBottomOf="@+id/textActor" />
 
             <include
                 android:id="@+id/layoutEmptySearch"
@@ -46,7 +63,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_8"
-                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

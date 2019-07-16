@@ -13,6 +13,7 @@ import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit.MILLISECONDS
 import javax.inject.Inject
 
+@Suppress("UNCHECKED_CAST")
 class SearchViewModel @Inject constructor(
     private val searchRepository: SearchRepository,
     application: Application
