@@ -33,6 +33,8 @@ open class MovieResult(
     var overView: String = "default",
     @SerializedName("release_date")
     var releaseDate: String? = null,
+    @SerializedName("original_name")
+    var nameMovie: String? = null,
     val imageSize: String = "w185",
     val imageSizeBlur: String = "original",
     var isFavorite: Boolean? = false

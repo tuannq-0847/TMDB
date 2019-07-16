@@ -1,7 +1,6 @@
 package com.rikkeisoft.moviedb.ui.detail
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.Observer
@@ -68,7 +67,6 @@ class DetailFragment : BaseFragment<FragmentDetailScreenBinding, DetailViewModel
             castAdapter.setData(it)
         })
         viewModel.similarMovies.observe(this, Observer {
-            Log.d("test", it.size.toString())
             recyclerSimilarMovie.visibility = if (it.isEmpty()) View.GONE else View.VISIBLE
             layoutEmptyMovie.visibility = if (it.isEmpty()) View.VISIBLE else View.GONE
             similarAdapter.setData(it)

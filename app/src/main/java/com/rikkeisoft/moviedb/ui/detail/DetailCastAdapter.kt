@@ -7,7 +7,6 @@ import com.rikkeisoft.moviedb.data.model.SearchResult
 import com.rikkeisoft.moviedb.databinding.ItemCastingBinding
 import com.rikkeisoft.moviedb.ui.base.BaseRecyclerAdapter
 import com.rikkeisoft.moviedb.ui.detail.DetailCastAdapter.CastViewHolder
-import com.rikkeisoft.moviedb.utils.Constants
 
 class DetailCastAdapter(private val data: MutableList<SearchResult>) :
     BaseRecyclerAdapter<ItemCastingBinding, SearchResult, CastViewHolder>(data) {
@@ -29,7 +28,6 @@ class DetailCastAdapter(private val data: MutableList<SearchResult>) :
         override fun bindView(position: Int, data: SearchResult) {
             binding.run {
                 castDetail = data
-                constant = Constants
             }
         }
     }
