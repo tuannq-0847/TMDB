@@ -7,7 +7,7 @@
 - Lưu phim yêu thích vào database
 - Tìm kiếm phim, tv series cũng như các diễn viên.
 - Có thể thay đổi theme light hoặc dark
-- Tự động thay đổi ng theo ngôn ngữ máy
+- Tự động thay đổi ngôn ngữ theo ngôn ngữ máy
 
 2 Screenshots
 
