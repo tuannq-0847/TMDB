@@ -6,8 +6,10 @@ import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.Observer
 import com.rikkeisoft.moviedb.R
 import com.rikkeisoft.moviedb.data.model.MovieResult
+import com.rikkeisoft.moviedb.data.model.SearchResult
 import com.rikkeisoft.moviedb.databinding.FragmentDetailScreenBinding
 import com.rikkeisoft.moviedb.ui.base.BaseFragment
+import com.rikkeisoft.moviedb.ui.detail_actor.DetailActorFragment
 import com.rikkeisoft.moviedb.ui.moviehome.MovieHomeChildAdapter
 import com.rikkeisoft.moviedb.utils.showMessage
 import kotlinx.android.synthetic.main.fragment_detail_screen.fabAddFav
@@ -23,7 +25,13 @@ class DetailFragment : BaseFragment<FragmentDetailScreenBinding, DetailViewModel
     NestedScrollView.OnScrollChangeListener {
 
     override val layoutId: Int = R.layout.fragment_detail_screen
-    private val castAdapter by lazy { DetailCastAdapter(mutableListOf()) }
+    private val castAdapter by lazy {
+        DetailCastAdapter(mutableListOf()) { searchResult ->
+            onItemCastClickListener(
+                searchResult
+            )
+        }
+    }
     private val similarAdapter by lazy {
         MovieHomeChildAdapter(mutableListOf()) { movieResult ->
             onItemMovieClickListener(
@@ -83,6 +91,13 @@ class DetailFragment : BaseFragment<FragmentDetailScreenBinding, DetailViewModel
     private fun onItemMovieClickListener(movieResult: MovieResult) {
         activity?.supportFragmentManager?.beginTransaction()
             ?.add(R.id.layoutParent, newInstance(movieResult))
+            ?.addToBackStack(null)
+            ?.commit()
+    }
+
+    private fun onItemCastClickListener(searchResult: SearchResult) {
+        activity?.supportFragmentManager?.beginTransaction()
+            ?.add(R.id.layoutParent, DetailActorFragment.newInstance(searchResult))
             ?.addToBackStack(null)
             ?.commit()
     }

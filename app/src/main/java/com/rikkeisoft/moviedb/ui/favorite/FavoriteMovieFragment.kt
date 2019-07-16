@@ -4,8 +4,10 @@ import android.view.View
 import androidx.lifecycle.Observer
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener
 import com.rikkeisoft.moviedb.R
+import com.rikkeisoft.moviedb.data.model.MovieResult
 import com.rikkeisoft.moviedb.databinding.FragmentFavoriteBinding
 import com.rikkeisoft.moviedb.ui.base.BaseFragment
+import com.rikkeisoft.moviedb.ui.detail.DetailFragment
 import kotlinx.android.synthetic.main.fragment_favorite.layoutEmptyFavorite
 import kotlinx.android.synthetic.main.fragment_favorite.recyclerFavorite
 import kotlinx.android.synthetic.main.fragment_favorite.swipeRefresh
@@ -14,7 +16,11 @@ import javax.inject.Named
 
 class FavoriteMovieFragment : BaseFragment<FragmentFavoriteBinding, FavoriteViewModel>(), OnRefreshListener {
     override val layoutId: Int = R.layout.fragment_favorite
-    private val adapter by lazy { FavoriteMovieAdapter(mutableListOf()) }
+    private val adapter by lazy {
+        FavoriteMovieAdapter(mutableListOf()) { movieResult ->
+            onItemFavoriteClick(movieResult)
+        }
+    }
 
     @Inject
     @field:Named(FavoriteViewModel.NAME)
@@ -44,5 +50,12 @@ class FavoriteMovieFragment : BaseFragment<FragmentFavoriteBinding, FavoriteView
             layoutEmptyFavorite.visibility = if (it.isEmpty()) View.VISIBLE else View.GONE
             adapter.setData(it)
         })
+    }
+
+    private fun onItemFavoriteClick(movieResult: MovieResult) {
+        activity?.supportFragmentManager?.beginTransaction()
+            ?.add(R.id.layoutParent, DetailFragment.newInstance(movieResult))
+            ?.addToBackStack(null)
+            ?.commit()
     }
 }
