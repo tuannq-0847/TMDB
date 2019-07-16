@@ -21,7 +21,8 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:queryBackground="@android:color/transparent"
                 app:queryHint="@string/search"
-                app:searchHintIcon="@drawable/ic_search" />
+                app:searchHintIcon="@drawable/ic_search"
+                app:showAsAction="always|collapseActionView" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerSearchParent"
