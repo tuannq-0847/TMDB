@@ -7,9 +7,11 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.rikkeisoft.moviedb.R
 import com.rikkeisoft.moviedb.data.model.MovieResult
+import com.rikkeisoft.moviedb.data.model.SearchResult
 import com.rikkeisoft.moviedb.databinding.FragmentSearchMovieBinding
 import com.rikkeisoft.moviedb.ui.base.BaseFragment
 import com.rikkeisoft.moviedb.ui.detail.DetailCastAdapter
+import com.rikkeisoft.moviedb.ui.detail.DetailFragment
 import com.rikkeisoft.moviedb.ui.moviehome.MovieHomeParentAdapter
 import kotlinx.android.synthetic.main.fragment_search_movie.layoutEmptySearch
 import kotlinx.android.synthetic.main.fragment_search_movie.recyclerActors
@@ -30,7 +32,7 @@ class SearchFragment : BaseFragment<FragmentSearchMovieBinding, SearchViewModel>
     }
 
     private val actorAdapter by lazy {
-        DetailCastAdapter(mutableListOf())
+        DetailCastAdapter(mutableListOf()) { searchResult -> onItemCastClickListener(searchResult) }
     }
 
     @Inject
@@ -80,6 +82,13 @@ class SearchFragment : BaseFragment<FragmentSearchMovieBinding, SearchViewModel>
         })
     }
 
+    private fun onItemCastClickListener(searchResult: SearchResult) {
+    }
+
     private fun onItemMovieClick(movieResult: MovieResult) {
+        activity?.supportFragmentManager?.beginTransaction()
+            ?.add(R.id.layoutParent, DetailFragment.newInstance(movieResult))
+            ?.addToBackStack(null)
+            ?.commit()
     }
 }

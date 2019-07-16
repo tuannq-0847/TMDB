@@ -9,7 +9,10 @@ import com.rikkeisoft.moviedb.ui.base.BaseRecyclerAdapter
 import com.rikkeisoft.moviedb.ui.favorite.FavoriteMovieAdapter.FavoriteViewHolder
 import com.rikkeisoft.moviedb.ui.moviehome.DiffUtilMovieHomeCallBack
 
-class FavoriteMovieAdapter(private val data: MutableList<MovieResult>) :
+class FavoriteMovieAdapter(
+    private val data: MutableList<MovieResult>,
+    private val listener: (movieResult: MovieResult) -> Unit
+) :
     BaseRecyclerAdapter<ItemFavoriteBinding, MovieResult, FavoriteViewHolder>(data) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoriteViewHolder =
@@ -25,11 +28,12 @@ class FavoriteMovieAdapter(private val data: MutableList<MovieResult>) :
         )
     }
 
-    class FavoriteViewHolder(private val binding: ItemFavoriteBinding) :
+    inner class FavoriteViewHolder(private val binding: ItemFavoriteBinding) :
         BaseViewHolder<ItemFavoriteBinding, MovieResult>(binding) {
 
         override fun bindView(position: Int, data: MovieResult) {
             binding.movie = data
+            itemView.setOnClickListener { listener(data) }
         }
     }
 }

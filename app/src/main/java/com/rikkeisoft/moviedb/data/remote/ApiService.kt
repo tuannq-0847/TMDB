@@ -1,10 +1,12 @@
 package com.rikkeisoft.moviedb.data.remote
 
+import com.rikkeisoft.moviedb.data.model.CastDetail
 import com.rikkeisoft.moviedb.data.model.SearchResult
 import com.rikkeisoft.moviedb.data.remote.response.BaseMovieResponse
 import com.rikkeisoft.moviedb.data.remote.response.CastDetailMovieResponse
 import com.rikkeisoft.moviedb.data.remote.response.GenreResponse
 import com.rikkeisoft.moviedb.data.remote.response.GetMovieListResponse
+import com.rikkeisoft.moviedb.data.remote.response.MovieCreditResponse
 import io.reactivex.Observable
 import io.reactivex.Single
 import retrofit2.http.GET
@@ -32,4 +34,10 @@ interface ApiService {
 
     @GET("3/movie/{id}/similar")
     fun getSimilarsByIdMovie(@Path("id") id: Int): Single<GetMovieListResponse>
+
+    @GET("3/person/{id}")
+    fun getDetailActor(@Path("id") id: Int): Single<CastDetail>
+
+    @GET("3/person/{id}/movie_credits")
+    fun getMovieCredit(@Path("id") id: Int): Single<MovieCreditResponse>
 }
