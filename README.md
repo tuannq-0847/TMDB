@@ -10,10 +10,10 @@
 
 2 Screenshots
 
-![Alt text](https://imgur.com/YUktF34 "Movie Screen")
-![Alt text](https://imgur.com/ShVHjcX "Favorite Screen")
-![Alt text](https://imgur.com/kwoCv88 "Detail Movie Screen")
-![Alt text](https://imgur.com/AiZ8hRG "Detail Movie Screen")
-![Alt text](https://imgur.com/OkkHtOz "Search Screen")
-![Alt text](https://imgur.com/kggi5qd "Change theme dialog")
-![Alt text](https://imgur.com/rZ52PcN "Detail Actor Screen")
+![p1](https://gitlab.com/tuannq2/mymoviedb/blob/develop/ReadMeImages/Screenshot_20190716-190002.png)
+![p1](https://gitlab.com/tuannq2/mymoviedb/blob/develop/ReadMeImages/Screenshot_20190716-190203.png)
+![p1](https://gitlab.com/tuannq2/mymoviedb/blob/develop/ReadMeImages/Screenshot_20190716-190020.png)
+![p1](https://gitlab.com/tuannq2/mymoviedb/blob/develop/ReadMeImages/Screenshot_20190716-190035.png)
+![p1](https://gitlab.com/tuannq2/mymoviedb/blob/develop/ReadMeImages/Screenshot_20190716-190044.png)
+![p1](https://gitlab.com/tuannq2/mymoviedb/blob/develop/ReadMeImages/Screenshot_20190716-190106.png)
+![p1](https://gitlab.com/tuannq2/mymoviedb/blob/develop/ReadMeImages/Screenshot_20190716-190116.png)
