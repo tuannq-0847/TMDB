@@ -8,10 +8,6 @@
         <variable
             name="castDetail"
             type="com.rikkeisoft.moviedb.data.model.SearchResult" />
-
-        <variable
-            name="constant"
-            type="com.rikkeisoft.moviedb.utils.Constants" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -27,7 +23,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             bind:showImagePoster="@{castDetail.profilePath}"
-            bind:sizeImage="@{constant.SIZE_W185}" />
+            bind:sizeImage="@{castDetail.imageSize}" />
 
         <TextView
             android:id="@+id/textRealName"

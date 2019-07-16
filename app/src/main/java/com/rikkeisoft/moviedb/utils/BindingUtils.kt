@@ -1,18 +1,11 @@
 package com.rikkeisoft.moviedb.utils
 
-import android.view.View
 import android.widget.ImageView
-import android.widget.ProgressBar
 import android.widget.RatingBar
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.rikkeisoft.moviedb.R
-
-@BindingAdapter("handleProgressBar")
-fun ProgressBar.handleProgress(isLoading: Boolean) {
-    visibility = if (isLoading) View.VISIBLE else View.GONE
-}
 
 @BindingAdapter("showImagePoster", "sizeImage")
 fun ImageView.showPoster(url: String?, sizeImage: String?) {
