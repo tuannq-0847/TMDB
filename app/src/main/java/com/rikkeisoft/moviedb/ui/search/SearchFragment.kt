@@ -12,6 +12,7 @@ import com.rikkeisoft.moviedb.databinding.FragmentSearchMovieBinding
 import com.rikkeisoft.moviedb.ui.base.BaseFragment
 import com.rikkeisoft.moviedb.ui.detail.DetailCastAdapter
 import com.rikkeisoft.moviedb.ui.detail.DetailFragment
+import com.rikkeisoft.moviedb.ui.detail_actor.DetailActorFragment
 import com.rikkeisoft.moviedb.ui.moviehome.MovieHomeParentAdapter
 import kotlinx.android.synthetic.main.fragment_search_movie.layoutEmptySearch
 import kotlinx.android.synthetic.main.fragment_search_movie.recyclerActors
@@ -60,10 +61,7 @@ class SearchFragment : BaseFragment<FragmentSearchMovieBinding, SearchViewModel>
     }
 
     override fun onQueryTextChange(newText: String?): Boolean {
-        layoutEmptySearch.visibility = if (newText.isNullOrEmpty()) View.VISIBLE else View.GONE
-        recyclerSearchParent.visibility = if (newText.isNullOrEmpty()) View.GONE else View.VISIBLE
-        recyclerActors.visibility = if (newText.isNullOrEmpty()) View.GONE else View.VISIBLE
-        textActor.visibility = if (newText.isNullOrEmpty()) View.GONE else View.VISIBLE
+        handleEmpty(newText)
         newText?.toLowerCase()?.let {
             viewModel.getResult(it)
         }
@@ -83,6 +81,17 @@ class SearchFragment : BaseFragment<FragmentSearchMovieBinding, SearchViewModel>
     }
 
     private fun onItemCastClickListener(searchResult: SearchResult) {
+        activity?.supportFragmentManager?.beginTransaction()
+            ?.add(R.id.layoutParent, DetailActorFragment.newInstance(searchResult))
+            ?.addToBackStack(null)
+            ?.commit()
+    }
+
+    private fun handleEmpty(newText: String?) {
+        layoutEmptySearch.visibility = if (newText.isNullOrEmpty()) View.VISIBLE else View.GONE
+        recyclerSearchParent.visibility = if (newText.isNullOrEmpty()) View.GONE else View.VISIBLE
+        recyclerActors.visibility = if (newText.isNullOrEmpty()) View.GONE else View.VISIBLE
+        textActor.visibility = if (newText.isNullOrEmpty()) View.GONE else View.VISIBLE
     }
 
     private fun onItemMovieClick(movieResult: MovieResult) {
