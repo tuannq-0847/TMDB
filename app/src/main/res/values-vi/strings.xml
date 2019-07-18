@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MyMovieDB</string>
+    <string name="genres">Thể loại</string>
+    <string name="movies">Phim</string>
+    <string name="theater">Đang chiếu rạp</string>
+    <string name="popular">Đang thịnh hành</string>
+    <string name="top_rate">Điểm cao</string>
+    <string name="overview">Tổng quan</string>
+    <string name="cast">Diễn viên</string>
+    <string name="related">Phim liên quan</string>
+    <string name="save_successfully">Đã lưu phim vào trong yêu thích</string>
+    <string name="remove_successfully">Đã xóa phim trong yêu thích</string>
+    <string name="device_offline">Không thể kết nối mạng</string>
+    <string name="content_network_error">Hãy kiểm tra lại kết nối</string>
+    <string name="retry">THỬ LẠI</string>
+    <string name="no_data">Không có dữ liệu</string>
+    <string name="tv_series">Tv Series</string>
+    <string name="search">Tìm kiếm</string>
+    <string name="favorite">Yêu thích</string>
+    <string name="setting">Cài đặt</string>
+    <string name="dark">Chủ đề tối</string>
+    <string name="light">Chủ đề sáng</string>
+    <string name="cancel">Hủy bỏ</string>
+    <string name="biography">Tiểu sử</string>
+</resources>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="movie"
+            type="com.rikkeisoft.moviedb.data.model.MovieResult" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imagePosterFavorite"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_280"
+            android:scaleType="fitXY"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            bind:showImagePoster="@{movie.posterPath}"
+            bind:sizeImage="@{movie.imageSize}" />
+
+        <TextView
+            android:id="@+id/textTitleFavorite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/black_40"
+            android:ellipsize="end"
+            android:padding="@dimen/dp_8"
+            android:singleLine="true"
+            android:text="@{movie.titleMovie}"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/sp_20"
+            app:layout_constraintBottom_toBottomOf="@+id/imagePosterFavorite" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

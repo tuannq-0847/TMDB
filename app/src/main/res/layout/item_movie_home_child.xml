@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="movieResult"
+            type="com.rikkeisoft.moviedb.data.model.MovieResult" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dp_16">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/imagePoster"
+            android:layout_width="@dimen/dp_150"
+            android:layout_height="@dimen/dp_225"
+            android:scaleType="fitXY"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:riv_corner_radius="@dimen/dp_8"
+            bind:showImagePoster="@{movieResult.posterPath}"
+            bind:sizeImage="@{movieResult.imageSize}" />
+
+        <TextView
+            android:id="@+id/textNameMovie"
+            android:layout_width="@dimen/dp_150"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="@{(movieResult.nameMovie==null)?movieResult.titleMovie:movieResult.nameMovie}"
+            android:textSize="@dimen/sp_16"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imagePoster" />
+
+        <androidx.appcompat.widget.AppCompatRatingBar
+            android:id="@+id/ratingBarMovie"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:progressTint="@color/colorYellow"
+            android:secondaryProgressTint="@color/colorYellow"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textNameMovie"
+            bind:handleRatingBar="@{movieResult.voteAverage}" />
+
+        <TextView
+            android:id="@+id/textScoreMovie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_8"
+            android:text="@{movieResult.voteAverage+``}"
+            app:layout_constraintStart_toEndOf="@+id/ratingBarMovie"
+            app:layout_constraintTop_toBottomOf="@+id/textNameMovie" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

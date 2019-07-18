@@ -1,0 +1,26 @@
+<resources>
+
+    <string name="app_name">MyMovieDB</string>
+    <string name="genres">Genres</string>
+    <string name="movies">Movies</string>
+    <string name="theater">In theater now</string>
+    <string name="popular">Popular now</string>
+    <string name="top_rate">Top rated</string>
+    <string name="overview">Overview</string>
+    <string name="cast">Actors</string>
+    <string name="related">Related Movies</string>
+    <string name="save_successfully">Saved to favorite</string>
+    <string name="remove_successfully">Removed from favorite</string>
+    <string name="device_offline">Device offline</string>
+    <string name="content_network_error">It looks like your\'re offline. Check your connection</string>
+    <string name="retry">RETRY</string>
+    <string name="no_data">No data available</string>
+    <string name="tv_series">Tv Series</string>
+    <string name="search">Search</string>
+    <string name="favorite">Favorite</string>
+    <string name="setting">Setting</string>
+    <string name="dark">Dark theme</string>
+    <string name="light">Light theme</string>
+    <string name="cancel">Cancel</string>
+    <string name="biography">Biography</string>
+</resources>
