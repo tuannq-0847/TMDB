@@ -1,7 +1,6 @@
 package com.rikkeisoft.moviedb.service
 
 import com.facebook.stetho.okhttp3.StethoInterceptor
-import com.rikkeisoft.moviedb.BuildConfig
 import com.rikkeisoft.moviedb.data.remote.ApiService
 import com.rikkeisoft.moviedb.utils.replaceItem
 import okhttp3.OkHttpClient
@@ -22,7 +21,7 @@ class NetworkService {
         client.addInterceptor { chain ->
             val original = chain.request()
             val url = original.url().newBuilder()
-                .addQueryParameter(KEY, BuildConfig.API_KEY)
+                .addQueryParameter(KEY, API_KEY)
                 .addQueryParameter(
                     LANGUAGE,
                     Locale.getDefault().toString().replaceItem()
@@ -46,6 +45,7 @@ class NetworkService {
         const val KEY = "api_key"
         const val LANGUAGE = "language"
         const val BASE_URL = "https://api.themoviedb.org/"
+        const val API_KEY = "1f54bd990f1cdfb230adb312546d765d"
     }
 }
 

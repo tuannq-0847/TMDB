@@ -39,7 +39,9 @@ class MovieHomeFragment : BaseFragment<FragmentMovieHomeBinding, MovieHomeViewMo
 
     private fun bindView() {
         recyclerMovieHome.adapter = adapter
+        recyclerMovieHome.isNestedScrollingEnabled = true
         recyclerGenres.adapter = genreAdapter
+        recyclerGenres.isNestedScrollingEnabled = true
     }
 
     override fun doObserve() {

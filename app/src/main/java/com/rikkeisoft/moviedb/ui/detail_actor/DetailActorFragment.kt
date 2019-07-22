@@ -34,6 +34,7 @@ class DetailActorFragment : BaseFragment<FragmentDetailActorBinding, DetailActor
             viewModel.getMovieCredit(it.idMovie)
         }
         recyclerMovie.adapter = adapter
+        recyclerMovie.isNestedScrollingEnabled = true
     }
 
     override val layoutId: Int = R.layout.fragment_detail_actor

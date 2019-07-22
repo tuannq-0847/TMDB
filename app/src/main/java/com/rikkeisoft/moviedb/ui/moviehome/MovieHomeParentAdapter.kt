@@ -39,6 +39,7 @@ class MovieHomeParentAdapter(
             itemView.run {
                 recyclerMovieChild.setRecycledViewPool(viewPool)
                 recyclerMovieChild.adapter = MovieHomeChildAdapter(data.movieResults, listener)
+                recyclerMovieChild.isNestedScrollingEnabled = true
                 textNameChild.text = data.kindOfMovie
             }
         }

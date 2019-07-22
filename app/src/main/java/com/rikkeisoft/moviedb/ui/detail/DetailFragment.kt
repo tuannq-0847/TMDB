@@ -66,7 +66,9 @@ class DetailFragment : BaseFragment<FragmentDetailScreenBinding, DetailViewModel
             viewModel.getDetail(it)
         }
         recyclerCasting.adapter = castAdapter
+        recyclerCasting.isNestedScrollingEnabled = true
         recyclerSimilarMovie.adapter = similarAdapter
+        recyclerSimilarMovie.isNestedScrollingEnabled = true
     }
 
     override fun doObserve() {
