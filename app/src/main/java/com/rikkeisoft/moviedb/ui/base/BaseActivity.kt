@@ -5,9 +5,9 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.rikkeisoft.moviedb.BR
+import com.rikkeisoft.moviedb.utils.showMessage
 import dagger.android.AndroidInjection
 import dagger.android.support.DaggerAppCompatActivity
-import com.rikkeisoft.moviedb.utils.showMessage
 
 abstract class BaseActivity<VB : ViewDataBinding, VM : BaseViewModel> : DaggerAppCompatActivity() {
     @get:LayoutRes
