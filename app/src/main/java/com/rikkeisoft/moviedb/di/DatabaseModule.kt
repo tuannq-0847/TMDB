@@ -12,7 +12,6 @@ import javax.inject.Singleton
 @Module
 class DatabaseModule {
 
-    @Singleton
     @Provides
     fun provideFavoriteDatabase(application: Application) = Room.databaseBuilder(
         application.applicationContext,

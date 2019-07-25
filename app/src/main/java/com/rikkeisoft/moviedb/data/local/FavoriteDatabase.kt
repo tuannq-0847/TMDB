@@ -15,3 +15,6 @@ abstract class FavoriteDatabase : RoomDatabase() {
         const val VERSION_DATABASE = 1
     }
 }
+
+
+//test ci

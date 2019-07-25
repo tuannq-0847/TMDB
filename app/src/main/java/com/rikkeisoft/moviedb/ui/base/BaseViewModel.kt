@@ -16,3 +16,5 @@ abstract class BaseViewModel(application: Application) : AndroidViewModel(applic
         compositeDisposable.clear()
     }
 }
+
+//test ci only
