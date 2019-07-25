@@ -1,7 +1,9 @@
 package com.rikkeisoft.moviedb.data.model
 
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 open class SearchResult(
     @SerializedName("first_air_date")
     var firstAirDate: String = "",

@@ -61,7 +61,7 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxandroid:$rootProject.ext.rxAndroidVersion"
     //Room
     implementation "androidx.room:room-runtime:$rootProject.ext.roomVersion"
-    annotationProcessor "androidx.room:room-compiler:$rootProject.ext.roomVersion"
+    kapt "androidx.room:room-compiler:$rootProject.ext.roomVersion"
     implementation "androidx.room:room-ktx:$rootProject.ext.roomVersion"
     implementation "androidx.room:room-rxjava2:$rootProject.ext.roomVersion"
     kapt "androidx.room:room-compiler:$rootProject.ext.roomVersion"
@@ -69,7 +69,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.ext.lifecycleVersion"
     //Glide
     implementation "com.github.bumptech.glide:glide:$rootProject.ext.glideVersion"
-    annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.ext.glideVersion"
+    kapt "com.github.bumptech.glide:compiler:$rootProject.ext.glideVersion"
     //Material Design
     implementation "com.google.android.material:material:$rootProject.ext.materialVersion"
     //RecyclerView
