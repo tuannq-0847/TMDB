@@ -17,8 +17,8 @@ import javax.inject.Named
 class FavoriteMovieFragment : BaseFragment<FragmentFavoriteBinding, FavoriteViewModel>(), OnRefreshListener {
     override val layoutId: Int = R.layout.fragment_favorite
     private val adapter by lazy {
-        FavoriteMovieAdapter(mutableListOf()) { movieResult ->
-            onItemFavoriteClick(movieResult)
+        FavoriteMovieAdapter(mutableListOf()) { movieResult, position ->
+            onItemFavoriteClick(movieResult, position)
         }
     }
 
@@ -52,9 +52,9 @@ class FavoriteMovieFragment : BaseFragment<FragmentFavoriteBinding, FavoriteView
         })
     }
 
-    private fun onItemFavoriteClick(movieResult: MovieResult) {
+    private fun onItemFavoriteClick(movieResult: MovieResult, position: Int) {
         activity?.supportFragmentManager?.beginTransaction()
-            ?.add(R.id.layoutParent, DetailFragment.newInstance(movieResult))
+            ?.add(R.id.layoutParent, DetailFragment.newInstance(movieResult, position))
             ?.addToBackStack(null)
             ?.commit()
     }

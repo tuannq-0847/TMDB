@@ -1,8 +1,8 @@
 package com.rikkeisoft.moviedb.ui.moviehome
 
+import android.view.View
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import androidx.recyclerview.widget.StaggeredGridLayoutManager.GAP_HANDLING_NONE
+import androidx.transition.TransitionInflater
 import com.rikkeisoft.moviedb.R
 import com.rikkeisoft.moviedb.data.model.MovieResult
 import com.rikkeisoft.moviedb.databinding.FragmentMovieHomeBinding
@@ -16,9 +16,9 @@ import javax.inject.Named
 class MovieHomeFragment : BaseFragment<FragmentMovieHomeBinding, MovieHomeViewModel>() {
     override val layoutId: Int = R.layout.fragment_movie_home
     private val adapter by lazy {
-        MovieHomeParentAdapter(mutableListOf()) { movieResult ->
+        MovieHomeParentAdapter(mutableListOf()) { movieResult, view, position ->
             onItemMovieClick(
-                movieResult
+                movieResult, view, position
             )
         }
     }
@@ -56,10 +56,20 @@ class MovieHomeFragment : BaseFragment<FragmentMovieHomeBinding, MovieHomeViewMo
         })
     }
 
-    private fun onItemMovieClick(movieResult: MovieResult) {
+    private fun onItemMovieClick(movieResult: MovieResult, view: View, position: Int) {
+        val instanceFragment = DetailFragment.newInstance(movieResult,position)
+        this.sharedElementReturnTransition =
+            TransitionInflater.from(context).inflateTransition(android.R.transition.fade)
+        this.exitTransition = TransitionInflater.from(context).inflateTransition(android.R.transition.fade)
+
+        instanceFragment.sharedElementEnterTransition =
+            TransitionInflater.from(context).inflateTransition(android.R.transition.fade)
+        instanceFragment.enterTransition =
+            TransitionInflater.from(context).inflateTransition(android.R.transition.fade)
         activity?.supportFragmentManager
             ?.beginTransaction()
-            ?.add(R.id.layoutParent, DetailFragment.newInstance(movieResult))
+            ?.add(R.id.layoutParent, instanceFragment)
+            ?.addSharedElement(view, "transition$position")
             ?.addToBackStack(null)
             ?.commit()
     }

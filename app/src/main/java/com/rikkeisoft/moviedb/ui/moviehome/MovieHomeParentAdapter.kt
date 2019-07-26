@@ -1,5 +1,6 @@
 package com.rikkeisoft.moviedb.ui.moviehome
 
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.rikkeisoft.moviedb.R
@@ -13,7 +14,7 @@ import kotlinx.android.synthetic.main.item_movie_home.view.textNameChild
 
 class MovieHomeParentAdapter(
     private val data: MutableList<MovieParent>,
-    private val listener: (movieResult: MovieResult) -> Unit
+    private val listener: (movieResult: MovieResult, view: View, position: Int) -> Unit
 ) :
     BaseRecyclerAdapter<ItemMovieHomeBinding, MovieParent, MovieHomeViewHolder>(data) {
 

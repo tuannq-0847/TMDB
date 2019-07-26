@@ -11,7 +11,7 @@ import com.rikkeisoft.moviedb.ui.moviehome.DiffUtilMovieHomeCallBack
 
 class FavoriteMovieAdapter(
     private val data: MutableList<MovieResult>,
-    private val listener: (movieResult: MovieResult) -> Unit
+    private val listener: (movieResult: MovieResult, position: Int) -> Unit
 ) :
     BaseRecyclerAdapter<ItemFavoriteBinding, MovieResult, FavoriteViewHolder>(data) {
 
@@ -33,7 +33,8 @@ class FavoriteMovieAdapter(
 
         override fun bindView(position: Int, data: MovieResult) {
             binding.movie = data
-            itemView.setOnClickListener { listener(data) }
+            itemView.setOnClickListener { listener(data, position
+            ) }
         }
     }
 }

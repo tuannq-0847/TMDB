@@ -1,11 +1,8 @@
 package com.rikkeisoft.moviedb.ui.search
 
-import android.app.Activity
-import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.view.View.OnTouchListener
-import android.view.inputmethod.InputMethodManager
 import android.widget.AutoCompleteTextView
 import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.core.content.ContextCompat
@@ -32,9 +29,9 @@ class SearchFragment : BaseFragment<FragmentSearchMovieBinding, SearchViewModel>
     override val layoutId: Int = R.layout.fragment_search_movie
 
     private val adapter by lazy {
-        MovieHomeParentAdapter(mutableListOf()) { movieResult ->
+        MovieHomeParentAdapter(mutableListOf()) { movieResult, view, position ->
             onItemMovieClick(
-                movieResult
+                movieResult, view, position
             )
         }
     }
@@ -89,7 +86,7 @@ class SearchFragment : BaseFragment<FragmentSearchMovieBinding, SearchViewModel>
     }
 
     override fun onTouch(view: View?, event: MotionEvent?): Boolean {
-    //    hideKeyBoard()
+        //    hideKeyBoard()
         return true
     }
 
@@ -107,9 +104,9 @@ class SearchFragment : BaseFragment<FragmentSearchMovieBinding, SearchViewModel>
         textActor.visibility = if (newText.isNullOrEmpty()) View.GONE else View.VISIBLE
     }
 
-    private fun onItemMovieClick(movieResult: MovieResult) {
+    private fun onItemMovieClick(movieResult: MovieResult, view: View, position: Int) {
         activity?.supportFragmentManager?.beginTransaction()
-            ?.add(R.id.layoutParent, DetailFragment.newInstance(movieResult))
+            ?.add(R.id.layoutParent, DetailFragment.newInstance(movieResult, position))
             ?.addToBackStack(null)
             ?.commit()
     }

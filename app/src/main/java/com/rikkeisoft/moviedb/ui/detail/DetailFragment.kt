@@ -13,6 +13,7 @@ import com.rikkeisoft.moviedb.ui.detail_actor.DetailActorFragment
 import com.rikkeisoft.moviedb.ui.moviehome.MovieHomeChildAdapter
 import com.rikkeisoft.moviedb.utils.showMessage
 import kotlinx.android.synthetic.main.fragment_detail_screen.fabAddFav
+import kotlinx.android.synthetic.main.fragment_detail_screen.imagePosterDetail
 import kotlinx.android.synthetic.main.fragment_detail_screen.layoutEmptyMovie
 import kotlinx.android.synthetic.main.fragment_detail_screen.nestedScrollDetail
 import kotlinx.android.synthetic.main.fragment_detail_screen.recyclerCasting
@@ -33,9 +34,9 @@ class DetailFragment : BaseFragment<FragmentDetailScreenBinding, DetailViewModel
         }
     }
     private val similarAdapter by lazy {
-        MovieHomeChildAdapter(mutableListOf()) { movieResult ->
+        MovieHomeChildAdapter(mutableListOf()) { movieResult, view, position ->
             onItemMovieClickListener(
-                movieResult
+                movieResult, view, position
             )
         }
     }
@@ -69,6 +70,7 @@ class DetailFragment : BaseFragment<FragmentDetailScreenBinding, DetailViewModel
         recyclerCasting.isNestedScrollingEnabled = true
         recyclerSimilarMovie.adapter = similarAdapter
         recyclerSimilarMovie.isNestedScrollingEnabled = true
+        imagePosterDetail.transitionName = arguments?.getInt(ARGUMENT_POSITION).toString()
     }
 
     override fun doObserve() {
@@ -90,9 +92,9 @@ class DetailFragment : BaseFragment<FragmentDetailScreenBinding, DetailViewModel
         })
     }
 
-    private fun onItemMovieClickListener(movieResult: MovieResult) {
+    private fun onItemMovieClickListener(movieResult: MovieResult, view: View, position: Int) {
         activity?.supportFragmentManager?.beginTransaction()
-            ?.add(R.id.layoutParent, newInstance(movieResult))
+            ?.add(R.id.layoutParent, newInstance(movieResult, position))
             ?.addToBackStack(null)
             ?.commit()
     }
@@ -116,11 +118,13 @@ class DetailFragment : BaseFragment<FragmentDetailScreenBinding, DetailViewModel
     companion object {
 
         const val ARGUMENT_MOVIE = "ARGUMENT_MOVIE"
+        const val ARGUMENT_POSITION = "ARGUMENT_POSITION"
 
         @JvmStatic
-        fun newInstance(movieResult: MovieResult) = DetailFragment().apply {
+        fun newInstance(movieResult: MovieResult, position: Int) = DetailFragment().apply {
             arguments = Bundle().apply {
                 putParcelable(ARGUMENT_MOVIE, movieResult)
+                putInt(ARGUMENT_POSITION, position)
             }
         }
     }

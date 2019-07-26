@@ -49,6 +49,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/imagePosterDetail"
                         android:layout_width="@dimen/dp_215"
                         android:layout_height="@dimen/dp_295"
                         android:layout_gravity="center"

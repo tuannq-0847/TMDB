@@ -1,6 +1,7 @@
 package com.rikkeisoft.moviedb.ui.detail_actor
 
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.Observer
 import com.rikkeisoft.moviedb.R
 import com.rikkeisoft.moviedb.data.model.MovieResult
@@ -15,7 +16,11 @@ import javax.inject.Inject
 
 class DetailActorFragment : BaseFragment<FragmentDetailActorBinding, DetailActorViewModel>() {
 
-    private val adapter by lazy { MovieHomeChildAdapter(mutableListOf()) { movieResult -> onItemMovieClick(movieResult) } }
+    private val adapter by lazy {
+        MovieHomeChildAdapter(mutableListOf()) { movieResult, view, position ->
+            onItemMovieClick(movieResult, view, position)
+        }
+    }
 
     @Inject
     lateinit var actorViewModel: DetailActorViewModel
@@ -55,9 +60,9 @@ class DetailActorFragment : BaseFragment<FragmentDetailActorBinding, DetailActor
         })
     }
 
-    private fun onItemMovieClick(movieResult: MovieResult) {
+    private fun onItemMovieClick(movieResult: MovieResult, view: View, position: Int) {
         activity?.supportFragmentManager?.beginTransaction()
-            ?.add(R.id.layoutParent, DetailFragment.newInstance(movieResult))
+            ?.add(R.id.layoutParent, DetailFragment.newInstance(movieResult,position))
             ?.addToBackStack(null)
             ?.commit()
     }
