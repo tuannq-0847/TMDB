@@ -1,6 +1,11 @@
 package com.rikkeisoft.moviedb.ui.search
 
+import android.app.Activity
+import android.util.Log
+import android.view.MotionEvent
 import android.view.View
+import android.view.View.OnTouchListener
+import android.view.inputmethod.InputMethodManager
 import android.widget.AutoCompleteTextView
 import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.core.content.ContextCompat
@@ -21,7 +26,9 @@ import kotlinx.android.synthetic.main.fragment_search_movie.searchMovie
 import kotlinx.android.synthetic.main.fragment_search_movie.textActor
 import javax.inject.Inject
 
-class SearchFragment : BaseFragment<FragmentSearchMovieBinding, SearchViewModel>(), OnQueryTextListener {
+class SearchFragment : BaseFragment<FragmentSearchMovieBinding, SearchViewModel>(), OnQueryTextListener,
+    OnTouchListener {
+
     override val layoutId: Int = R.layout.fragment_search_movie
 
     private val adapter by lazy {
@@ -54,6 +61,7 @@ class SearchFragment : BaseFragment<FragmentSearchMovieBinding, SearchViewModel>
         }
         recyclerSearchParent.adapter = adapter
         recyclerActors.adapter = actorAdapter
+        view?.setOnTouchListener(this)
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {
@@ -78,6 +86,11 @@ class SearchFragment : BaseFragment<FragmentSearchMovieBinding, SearchViewModel>
         viewModel.castDetails.observe(this, Observer {
             actorAdapter.setData(it)
         })
+    }
+
+    override fun onTouch(view: View?, event: MotionEvent?): Boolean {
+    //    hideKeyBoard()
+        return true
     }
 
     private fun onItemCastClickListener(searchResult: SearchResult) {

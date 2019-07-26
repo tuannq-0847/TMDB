@@ -20,7 +20,7 @@ class DetailViewModel @Inject constructor(
     val movie by lazy { MutableLiveData<MovieResult>() }
     val casters by lazy { MutableLiveData<MutableList<SearchResult>>() }
     val similarMovies by lazy { MutableLiveData<MutableList<MovieResult>>() }
-    val favoriteResult by lazy { MutableLiveData<Boolean>() }
+    val favoriteResult = MutableLiveData<Boolean>().apply { value = false }
 
     fun getDetail(movieResult: MovieResult) {
         movie.value = movieResult
