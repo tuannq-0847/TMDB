@@ -5,8 +5,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
-
-apply plugin: 'io.fabric'
+apply plugin: 'com.google.dagger.hilt.android'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -20,13 +19,6 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
-        debug {
-            applicationIdSuffix '.debug'
-            testCoverageEnabled true
-        }
-        staging {
-            applicationIdSuffix '.staging'
-        }
         release {
             testCoverageEnabled false
             minifyEnabled false
@@ -41,14 +33,14 @@ android {
     dataBinding {
         enabled = true
     }
+    viewBinding {
+        enabled = true
+    }
 }
 
 dependencies {
-    //dagger
-    implementation "com.google.dagger:dagger-android:$rootProject.ext.daggerVersion"
-    implementation "com.google.dagger:dagger-android-support:$rootProject.ext.daggerVersion"
-    kapt "com.google.dagger:dagger-android-processor:$rootProject.ext.daggerVersion"
-    kapt "com.google.dagger:dagger-compiler:$rootProject.ext.daggerVersion"
+    implementation("com.google.dagger:hilt-android:2.41")
+    kapt("com.google.dagger:hilt-android-compiler:2.38.1")
     //dataBinding
     kapt "com.android.databinding:compiler:$rootProject.ext.databindingVersion"
     //retrofit
@@ -86,6 +78,9 @@ dependencies {
 
     //RoundedImageView
     implementation "com.makeramen:roundedimageview:$rootProject.ext.roundedImageVersion"
+    //base
+    api('io.github.tuannq-0847:basemvvm:1.0.9')
+    implementation("androidx.fragment:fragment-ktx:1.5.1")
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"

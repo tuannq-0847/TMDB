@@ -7,7 +7,7 @@
 
         <variable
             name="movie"
-            type="com.rikkeisoft.moviedb.data.model.MovieResult" />
+            type="com.karleinstein.moviedb.data.model.MovieResult" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

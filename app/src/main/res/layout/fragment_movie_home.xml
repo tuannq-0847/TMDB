@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.rikkeisoft.moviedb.ui.moviehome.MovieHomeViewModel" />
+            type="com.karleinstein.moviedb.ui.moviehome.MovieHomeViewModel" />
     </data>
 
     <androidx.core.widget.NestedScrollView

@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.rikkeisoft.moviedb.ui.detail_actor.DetailActorViewModel" />
+            type="com.karleinstein.moviedb.ui.detail_actor.DetailActorViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout

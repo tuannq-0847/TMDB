@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.rikkeisoft.moviedb.ui.main.MainViewModel" />
+            type="com.karleinstein.moviedb.ui.main.MainViewModel" />
     </data>
 
     <FrameLayout
